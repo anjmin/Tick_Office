@@ -5,6 +5,7 @@ package com.qfedu.pojo;
  */
 public class User {
 
+
     private String password;
 
     public String getPassword() {

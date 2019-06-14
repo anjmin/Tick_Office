@@ -1,9 +1,9 @@
 package com.qfedu.service.impl;
 
 import com.qfedu.service.UserService;
+import org.springframework.stereotype.Service;
 
-/**
- * Created by Administrator on 2019/6/14 0014.
- */
+
+@Service
 public class UserServiceImpl implements UserService {
 }
