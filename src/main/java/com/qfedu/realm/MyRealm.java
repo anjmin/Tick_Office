@@ -42,21 +42,23 @@ public class MyRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         // 从token中获取用户名
-        String name = (String)token.getPrincipal();
+        String no = (String)token.getPrincipal();
 
         // 从数据库查询用户数据
-        User user = userDao.findByName(name);
+        User user = userDao.findByName(no);
         // 保存合法认证信息的对象
         SimpleAuthenticationInfo info = null;
         if(user == null){
+            // 第一个参数，用户名
+            // 第二个参数，合法密码
+            // 第三个参数，realm的名称
             info = new SimpleAuthenticationInfo(null, null, this.getName());
         }else{
             // 第一个参数，用户名
             // 第二个参数，合法密码
             // 第三个参数，realm的名称
-            info = new SimpleAuthenticationInfo(name, user.getPassword(), this.getName());
+            info = new SimpleAuthenticationInfo(no, user.getPassword(), this.getName());
         }
-
         return info;
     }
 }

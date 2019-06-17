@@ -12,5 +12,8 @@ public interface UserDao {
 
     List<String> findPermsByName(String name);
 
-    User findByName(String name);
+    // 根据用户名查找用户
+    User findByName(String no);
+
+
 }

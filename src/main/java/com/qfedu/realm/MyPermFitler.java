@@ -15,6 +15,7 @@ public class MyPermFitler extends PermissionsAuthorizationFilter {
     // 权限验证不通过，在该方法中确定进一步的操作
     // ajax请求，需要返回json格式数据
     // 非ajax请求，跳转到指定的资源
+
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
 
@@ -31,7 +32,7 @@ public class MyPermFitler extends PermissionsAuthorizationFilter {
             response.getWriter().write(jsonInfo);
         }else{
             // 非ajax方式，重定向到指定的资源
-            res.sendRedirect(req.getContextPath() + "/unauthorized.jsp");
+            res.sendRedirect(req.getContextPath() + "/error.html");
         }
 
         // 验证不通过

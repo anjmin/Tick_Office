@@ -95,7 +95,7 @@
                 </prop>
                 <!-- 授权异常，跳转到unauthorized.jsp -->
                 <prop key="org.apache.shiro.authz.UnauthorizedException">
-                    /unauthorized  <!--//指定跳转的资源路径-->
+                    /error <!--//指定跳转的资源路径-->
                 </prop>
             </props>
         </property>

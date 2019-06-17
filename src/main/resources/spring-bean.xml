@@ -110,7 +110,7 @@
 		<property name="cacheManager" ref="cacheManager" />  <!--缓冲管理器-->
 	</bean>
 
-	<!-- Shiro过滤器 -->
+	<!-- Shiro过滤器 id="shiroFilter"和web.xml保持一致-->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  <!--//和web.xml中的过滤filter-name需要一致-->
 		<!-- Shiro的核心安全接口,这个属性是必须的 -->
 		<property name="securityManager" ref="securityManager"/>
@@ -118,8 +118,8 @@
 		<!-- 未登陆时，访问需要认证的资源，则跳转到登录页面的配置 -->
 		<property name="loginUrl" value="/login.html"/>   <!--//可以修改-->
 
-		<!-- 权限认证失败，则跳转到指定页面
-		<property name="unauthorizedUrl" value="/unauthorized.jsp"/> //可以修改-->
+		<!-- 权限认证失败，则跳转到指定页面-->
+		<property name="unauthorizedUrl" value="/error.html"/> <!--//可以修改-->
 
 		<!--  设置自定义的filter -->
 		<property name="filters">
@@ -129,24 +129,26 @@
 			</map>
 		</property>
 
-		<!-- Shiro连接约束配置,即过滤链的定义 -->
+		<!-- Shiro连接约束配置,即过滤链的定义即过滤链的定义定义url访问的时候对应的认证或授权时处理的过滤器 -->
 		<property name="filterChainDefinitions">  <!--//需要修改 -> 核心配置 ->通过过滤连接，来保护资源的安全，-->
 			<value>
 				<!-- anon:可以进行匿名访问 -->
 				/login.do = anon
+				/error.html = anon
 				/login.jsp = anon
 				/media/** = anon
 
+				<!-- authc:只有经过身份认证后才能访问,如果没有rememberMe功能,正常使用即可 -->
+				/** = authc
 				<!-- 配置退出的操作 -->
 				/logout.do = logout
 				<!-- perms:访问请求需要的权限 --> <!--//注意权限配置一定要在用户身份证认证之前-->
 				<!--/test.do=perms["user:list"]
 				/test2.do=perms["user:sss"]-->
 
-				<!-- authc:只有经过身份认证后才能访问,如果没有rememberMe功能,正常使用即可 -->
-				<!--/** = authc-->
+
 				<!--如果有rememberMe功能,则需要使用user过滤器,包含rememberMe和认证功能-->
-				/** = user
+				<!--/** = user-->
 
 				<!--例子-->
 				<!--  /login=anon
