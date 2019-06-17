@@ -11,9 +11,10 @@
 
 	<!-- 设置类型的别名 -->
 	<typeAliases>
-		<!-- <typeAlias type="com.qianfeng.crud.Employee" alias="employee"/> -->
+		 <typeAlias type="com.qfedu.pojo.User" alias="user"/>
+	<!--
 		<package name="com.qfedu.pojo"></package>
-		<package name="com.qfedu.vo"></package>
+		<package name="com.qfedu.vo"></package>-->
 	</typeAliases>
 
 	<!--
