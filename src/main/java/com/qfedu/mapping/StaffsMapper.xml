@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qfedu.dao.StaffDao">
+	<!--批量导入-->
+	<insert id="addBatch" parameterType="list">
+		insert into t_staff (no,name,did,flag,sex,email,qq,phone,createdate,photo)values
+		<foreach collection="list" item="sta" separator=",">
+			(#{sta.no},#{sta.name},#{sta.did},#{sta.flag},#{sta.sex},
+			#{sta.email},#{sta.qq},#{sta.phone},#{sta.createdate},#{sta.photo})
+		</foreach>
+	</insert>
+	<!--查询所有员工-->
+	<select id="findAll" resultType="staff">
+		select * from t_staff
+	</select>
+	
+	
+
+</mapper>

@@ -9,6 +9,7 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="media/layui/css/layui.css" media="all">
 <script src="media/js/jquery.min.js"></script>
+<script type="text/javascript" src="media/js/jquery.form.js"></script>
 </head>
 <body>
 	<div class="layui-container" style="margin-top: 5px">
@@ -81,6 +82,25 @@
 		});
 	});
 
+</script>
+<script type="text/javascript">
+	$("form").submit(function () {
+		//ajaxSubmit 是jQuery.form中提供的方法
+		$("form").ajaxSubmit({
+			type:"post",
+			url:"import.do",
+			data:$("form").serialize(),
+			dataType:"json",
+			success:function (data) {
+				if (data.code == 1){
+					alert("导入成功");
+				}else {
+					alert(data.info);
+				}
+
+			}
+		})
+	})
 </script>
 </body>
 </html>
