@@ -3,29 +3,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qfedu.dao.UserDao">
-	
+
+	<!--查找用户-->
 	<select id="findByName" parameterType="string" resultType="user">
 		select * from t_user where no=#{no}
 	</select>
 
+	<!--查找用户角色-->
 	<select id="findRolesByName" parameterType="string" resultType="string">
-		select r.rname from t_user u
-		inner join t_user_role ur
-		on ur.uid=u.uid
+		select r.info from t_user u
+		inner join t_userrole ur
+		on ur.uid=u.id
 		INNER JOIN t_role r
-		on r.rid=ur.rid
-		where u.username=#{name}
+		on r.id=ur.rid
+		where u.no=#{no}
+
 	</select>
 
+	<!--查找用户权限-->
 	<select id="findPermsByName" parameterType="string" resultType="string">
-		select p.pdesc from t_user u
-		INNER JOIN t_user_role ur
-		on ur.uid=u.uid
-		INNER JOIN t_role_permision rp
-		on rp.rid=ur.rid
-		inner join t_permision p
-		on p.pid=rp.pid
-		where u.username=#{name} and p.pdesc is not null
+		select DISTINCT a.aurl from t_user u
+		INNER JOIN t_userrole ur
+		on ur.uid=u.id
+		INNER JOIN t_roleauthority ra
+		on ra.rid=ur.rid
+		INNER JOIN t_authority a
+		on a.id=ra.aid
+		where u.no=#{no}
 	</select>
 
 </mapper>

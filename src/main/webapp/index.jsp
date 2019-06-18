@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +40,7 @@
 
             </li>
             <li class="layui-nav-item" lay-unselect>
-                <a href="index.html" layadmin-event="refresh" title="刷新">
+                <a href="index.jsp" layadmin-event="refresh" title="刷新">
                     <i class="layui-icon layui-icon-refresh-3"></i>
                 </a>
             </li>
@@ -53,7 +56,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="media/images/qf_logo.png" class="layui-nav-img">
-                    Feri
+                    <shiro:principal></shiro:principal>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:showTab(1001,'user.html','我的信息');">我的信息</a></dd>
@@ -61,7 +64,7 @@
                     <dd><a href="javascript:showTab(1002,'user.html','修改密码');">修改密码</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="userloginout.do">注销</a></li>
+            <li class="layui-nav-item"><a href="logout.do">注销</a></li>
         </ul>
     </div>
 
@@ -74,6 +77,7 @@
             </ul>
         </div>
     </div>
+
     <div class="layui-body" id="container" >
         <!-- 内容主体区域 -->
         <div class="layui-tab" lay-filter="demo" style="width: 100%;height: 90%">
@@ -100,7 +104,7 @@
         base: 'media/layui/lay/modules/'
     }).use(['element','app'], function(){
         element = layui.element;
-        $.get("/usermenu.do",null,function (arr) {
+        $.get("usermenu.do",null,function (arr) {
             var s;
             for(i=0;i<arr.length;i++){
                 var parent=arr[i];
