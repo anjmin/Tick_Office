@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qfedu.dao.DepartDao">
+    <resultMap id="departMap" type="depart">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="createtime" column="Createtime"></result>
+        <result property="flag" column="flag"></result>
+    </resultMap>
+
+
+
+
+</mapper>

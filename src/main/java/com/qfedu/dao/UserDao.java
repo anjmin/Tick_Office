@@ -8,12 +8,13 @@ import java.util.List;
  * Created by Administrator on 2019/6/14 0014.
  */
 public interface UserDao {
-    List<String> findRolesByName(String name);
-
-    List<String> findPermsByName(String name);
 
     // 根据用户名查找用户
-    User findByName(String no);
+    User findByName(String name);
 
+    //根据用户查询用户拥有的角色
+    List<String> findRolesByName(String name);
+    //根据用户查询用户拥有的权限
+    List<String> findPermsByName(String name);
 
 }

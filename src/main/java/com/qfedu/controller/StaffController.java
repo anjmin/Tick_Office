@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @ResponseBody
@@ -22,5 +23,12 @@ public class StaffController {
         List<Staff> list = staffService.findAll();
         return  new JsonBean(1,null);
     }
+    //分页展示员工信息
+    @RequestMapping("/staffpage.do")
+    public Map<String, Object> findByPage(Integer page, Integer limit){
+        Map<String, Object> map = staffService.findByPage(page, limit);
+        return map;
+    }
+
 
 }

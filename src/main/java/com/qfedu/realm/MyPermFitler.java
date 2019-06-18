@@ -33,6 +33,7 @@ public class MyPermFitler extends PermissionsAuthorizationFilter {
         }else{
             // 非ajax方式，重定向到指定的资源
             res.sendRedirect(req.getContextPath() + "/error.html");
+
         }
 
         // 验证不通过

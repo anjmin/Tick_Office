@@ -137,14 +137,16 @@
 				/error.html = anon
 				/login.jsp = anon
 				/media/** = anon
-
-				<!-- authc:只有经过身份认证后才能访问,如果没有rememberMe功能,正常使用即可 -->
-				/** = authc
 				<!-- 配置退出的操作 -->
 				/logout.do = logout
-				<!-- perms:访问请求需要的权限 --> <!--//注意权限配置一定要在用户身份证认证之前-->
-				<!--/test.do=perms["user:list"]
-				/test2.do=perms["user:sss"]-->
+				<!-- authc:只有经过身份认证后才能访问,如果没有rememberMe功能,正常使用即可 -->
+				/** = authc
+
+				<!-- perms:访问请求需要的权限 //注意权限配置一定要在用户身份证认证之前
+				/test.do=perms["main.html"]
+				/test2.do=perms["userlimit.html"]-->
+
+
 
 
 				<!--如果有rememberMe功能,则需要使用user过滤器,包含rememberMe和认证功能-->

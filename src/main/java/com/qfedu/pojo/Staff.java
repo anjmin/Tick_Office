@@ -25,6 +25,18 @@ public class Staff {
     // 图片
     private String photo;
 
+    private Depart depart;
+
+    private  String dname;
+
+    public String getDname() {
+        return depart.getName();
+    }
+
+    public void setDname(String dname) {
+        this.dname = dname;
+    }
+
     public String getNo() {
         return no;
     }
@@ -103,5 +115,30 @@ public class Staff {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Depart getDepart() {
+        return depart;
+    }
+
+    public void setDepart(Depart depart) {
+        this.depart = depart;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "no='" + no + '\'' +
+                ", name='" + name + '\'' +
+                ", did=" + did +
+                ", flag=" + flag +
+                ", sex='" + sex + '\'' +
+                ", email='" + email + '\'' +
+                ", qq='" + qq + '\'' +
+                ", phone='" + phone + '\'' +
+                ", createdate=" + createdate +
+                ", photo='" + photo + '\'' +
+                ", depart=" + depart +
+                '}';
     }
 }

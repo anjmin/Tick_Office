@@ -27,9 +27,13 @@ public class MyRealm extends AuthorizingRealm {
 
         // 获取登录后的合法的用户名
         String name = (String)principals.getPrimaryPrincipal();
+        System.out.println("获取登录后的合法的用户名："+name);
+
         // 从数据库中好擦U型你用户的角色和权限列表
         List<String> roles = userDao.findRolesByName(name);
+        System.out.println("用户角色："+roles);
         List<String> perms = userDao.findPermsByName(name);
+        System.out.println("用户权限："+perms);
 
         // 授权信息对象
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -42,10 +46,11 @@ public class MyRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         // 从token中获取用户名
-        String no = (String)token.getPrincipal();
-
+        String name = (String)token.getPrincipal();
+        System.out.println("从token中获取用户名："+name);
         // 从数据库查询用户数据
-        User user = userDao.findByName(no);
+        User user = userDao.findByName(name);
+        System.out.println("查找的用户："+user);
         // 保存合法认证信息的对象
         SimpleAuthenticationInfo info = null;
         if(user == null){
@@ -57,7 +62,7 @@ public class MyRealm extends AuthorizingRealm {
             // 第一个参数，用户名
             // 第二个参数，合法密码
             // 第三个参数，realm的名称
-            info = new SimpleAuthenticationInfo(no, user.getPassword(), this.getName());
+            info = new SimpleAuthenticationInfo(name, user.getPassword(), this.getName());
         }
         return info;
     }

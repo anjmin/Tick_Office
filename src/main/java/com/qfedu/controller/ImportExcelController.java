@@ -22,14 +22,14 @@ public class ImportExcelController {
     @Autowired
     private StaffService staffService;
 
-    @RequestMapping("import.do")
+    @RequestMapping("staffbatch.do")
     @ResponseBody
-    public JsonBean importExcel(@RequestParam MultipartFile excelFile) throws Exception {
+    public JsonBean importExcel(@RequestParam MultipartFile mFile) throws Exception {
         //获取上传的文件名
-        String fileName = excelFile.getOriginalFilename();
+        String fileName = mFile.getOriginalFilename();
         //获取上传文件的输入流
         try {
-            InputStream inputStream = excelFile.getInputStream();
+            InputStream inputStream = mFile.getInputStream();
             //读取Excel表格内容
             List<Map<String, Object>> maps = ExcelUtils.readExcel(fileName, inputStream);
             //通过Jackson进行操作

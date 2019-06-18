@@ -3,6 +3,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qfedu.dao.StaffDao">
+	<resultMap id="staffMap" type="staff">
+		<id property="no" column="no"></id>
+		<result property="name" column="name"></result>
+		<result property="did" column="did"></result>
+		<result property="flag" column="flag"></result>
+		<result property="sex" column="sex"></result>
+		<result property="email" column="email"></result>
+		<result property="qq" column="qq"></result>
+		<result property="phone" column="phone"></result>
+		<result property="createdate" column="createdate"></result>
+		<result property="photo" column="photo"></result>
+		<association property="depart" resultMap="dep"></association>
+
+	</resultMap>
+	<resultMap id="dep" type="depart">
+		<id property="id" column="id"></id>
+		<result property="name" column="dname"></result>
+	</resultMap>
+
 	<!--批量导入-->
 	<insert id="addBatch" parameterType="list">
 		insert into t_staff (no,name,did,flag,sex,email,qq,phone,createdate,photo)values
@@ -12,10 +31,22 @@
 		</foreach>
 	</insert>
 	<!--查询所有员工-->
-	<select id="findAll" resultType="staff">
-		select * from t_staff
+	<select id="findAll" resultMap="staffMap">
+		select s.*,
+		d.name as dname
+		from t_staff s LEFT JOIN t_depart d
+		ON d.id = s.did
 	</select>
-	
+	<!--分页-->
+	<select id="findByIndexAndSize" parameterType="map" resultType="staff">
+		select * from t_staff limit #{index},#{size}
+	</select>
+	<!--计数-->
+	<select id="count" resultType="int">
+		select count(*) from t_staff
+	</select>
+
+	<!--<delete id="selectStaff" -->
 	
 
 </mapper>
