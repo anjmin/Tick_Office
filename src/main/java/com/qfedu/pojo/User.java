@@ -1,5 +1,7 @@
 package com.qfedu.pojo;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2019/6/14 0014.
  */
@@ -12,6 +14,15 @@ public class User {
     private  String name;
     private Integer flag;
     private  String headphoto;
+    private List<Role> roleList;
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
 
     public Integer getId() {
         return id;
@@ -70,6 +81,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", flag=" + flag +
                 ", headphoto='" + headphoto + '\'' +
+                ", roleList=" + roleList +
                 '}';
     }
 }

@@ -8,7 +8,8 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="media/layui/css/layui.css" media="all">
-    <script src="media/js/jquery.min.js"></script>
+    <script type="text/javascript" src="media/js/jquery.min.js"></script>
+    <script type="text/javascript" src="media/js/jquery-1.12.2.min.js"></script>
 </head>
 <body>
 
@@ -60,9 +61,10 @@
 <script>
     var tableIns;
     var form1;
-    layui.use(['table','form'], function () {
+    layui.use(['layer','table','form'], function () {
+        var layer = layui.layer;
         var table = layui.table;
-        form1=layui.form;
+        var form=layui.form;
         //第一个实例
         tableIns = table.render({
             elem: '#tbdata'

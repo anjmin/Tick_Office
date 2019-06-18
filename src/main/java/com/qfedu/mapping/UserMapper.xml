@@ -3,6 +3,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qfedu.dao.UserDao">
+
+	<resultMap id="userMap" type="user">
+		<id column="id" property="id"></id>
+		<result column="no" property="no"></result>
+		<result column="password" property="password"></result>
+		<result column="name" property="name"></result>
+		<result column="flag" property="flag"></result>
+		<result column="headphoto" property="headphoto"></result>
+		<collection property="roleList" ofType="com.qfedu.pojo.Role">
+			<id column="rid" property="id"></id>
+			<result column="info" property="info"></result>
+		</collection>
+	</resultMap>
 	
 	<select id="findByName" parameterType="string" resultType="user">
 		select * from t_user where no=#{no}
@@ -20,12 +33,27 @@
 	<select id="findPermsByName" parameterType="string" resultType="string">
 		select p.pdesc from t_user u
 		INNER JOIN t_user_role ur
-		on ur.uid=u.uid
+		on ur.uid=u.id
 		INNER JOIN t_role_permision rp
 		on rp.rid=ur.rid
 		inner join t_permision p
-		on p.pid=rp.pid
+		on p.id=rp.pid
 		where u.username=#{name} and p.pdesc is not null
+	</select>
+
+	<select id="findAllByNoAndFg" parameterType="map" resultMap="userMap">
+		select u.id,u.no,u.name,r.id rid,r.info,u.flag from t_user u
+		inner join t_userrole ur
+		on ur.uid = u.id
+		inner join t_role r
+		on ur.rid = r.id
+		where 1=1
+		<if test="no !=null and no !=''">
+			and u.no = #{no}
+		</if>
+		<if test="flag !=null and flag !=''">
+			and u.flag = #{flag}
+		</if>
 	</select>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.qfedu.dao;
 
 import com.qfedu.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface UserDao {
     User findByName(String no);
 
 
+    List<User> findAllByNoAndFg(@Param("no") String no, @Param("flag") Integer flag);
 }
