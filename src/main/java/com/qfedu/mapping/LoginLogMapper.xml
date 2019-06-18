@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qfedu.dao.LoginLogDao">
+
+	<!--查找用户-->
+	<select id="findLoginLog" parameterType="string" resultType="loginLog">
+		SELECT * from t_loginlog where no=#{no}
+	</select>
+</mapper>
