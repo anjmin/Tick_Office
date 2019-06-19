@@ -32,7 +32,9 @@
 		    ,cols: [[ //表头
 		      {field: 'no', title: '工号', sort: true, fixed: 'left'}
 		      ,{field: 'name', title: '员工名称'}
-		      ,{field: 'dname', title: '所属部门'}
+		      ,{field: 'depart', title: '所属部门',templet:function (obj)
+                          {return obj.depart.name
+                      }}
 		      ,{field: 'sex', title: '性别'}
 		      ,{field: 'phone', title: '手机号'}
 		      ,{field: 'qq', title: 'qq号'}
@@ -56,7 +58,7 @@
 		                        if(data.code==1){
 
 		                            layer.msg("删除成功", {icon: 6});
-		                            window.location.href="stafflist.html";
+		                            //window.location.href="stafflist.html";
 		                        }else{
 		                            layer.msg("删除失败", {icon: 5});
 		                        }

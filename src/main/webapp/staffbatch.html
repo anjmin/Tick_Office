@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="layui-container" style="margin-top: 5px">
-		<form class="layui-form" action="staffbatch.do" method="post" enctype="multipart/form-data">
+		<form class="layui-form" method="post" enctype="multipart/form-data" onsubmit="return false;">
 		<div class="layui-form-item">
 				<label class="layui-form-label">下载模板</label>
 				<div class="layui-input-block">
@@ -36,24 +36,25 @@
 	<script src="media/layui/layui.js"></script>
 
 
-<!--<script type="text/javascript">-->
-	<!--$("form").submit(function () {-->
-		<!--//ajaxSubmit 是jQuery.form中提供的方法-->
-		<!--$("form").ajaxSubmit({-->
-			<!--type:"post",-->
-			<!--url:"staffbatch.do",-->
-			<!--data:$("form").serialize(),-->
-			<!--dataType:"json",-->
-			<!--success:function (data) {-->
-				<!--if (data.code == 1){-->
-					<!--alert("导入成功");-->
-				<!--}else {-->
-					<!--alert(data.info);-->
-				<!--}-->
+<script type="text/javascript">
+	$("form").submit(function () {
+		//ajaxSubmit 是jQuery.form中提供的方法
+		$("form").ajaxSubmit({
+			type:"post",
+			url:"staffbatch.do",
+			data:$("form").serialize(),
+			dataType:"json",
+			success:function (data) {
+				if (data.code == 1){
+					alert("导入成功");
+					window.location.href="stafflist.html";
+				}else {
+					alert(data.info);
+				}
 
-			<!--}-->
-		<!--})-->
-	<!--})-->
-<!--</script>-->
+			}
+		})
+	})
+</script>
 </body>
 </html>
