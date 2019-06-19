@@ -52,6 +52,7 @@ public class UserController {
         String no=(String)SecurityUtils.getSubject().getPrincipal();
         System.out.println("拿到的用户名："+no);
        List<Authority> authorityList=authorityService.findUserMenuByNo(no);
+        System.out.println("菜单啊："+authorityList);
         return authorityList;
     }
 
