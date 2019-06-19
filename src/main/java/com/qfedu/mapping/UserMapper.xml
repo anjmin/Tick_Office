@@ -65,4 +65,12 @@
 		ORDER BY r.info desc
 	</select>
 
+	<!--删除用户角色-->
+	<delete id="deleteById" parameterType="Integer">
+		delete u,ur from t_user u
+		left join t_userrole ur
+		on u.id = ur.uid
+		where u.id=#{id}
+	</delete>
+
 </mapper>

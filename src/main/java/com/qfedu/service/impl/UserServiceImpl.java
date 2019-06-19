@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
         return map;
     }
 
+    @Override
+    public void deleteById(Integer id) {
+        userDao.deleteById(id);
+    }
+
 }

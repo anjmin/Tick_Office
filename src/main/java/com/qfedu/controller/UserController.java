@@ -5,6 +5,7 @@ import com.qfedu.pojo.Authority;
 import com.qfedu.service.AuthorityService;
 import com.qfedu.service.UserService;
 import com.qfedu.utils.GetIpUtils;
+import com.qfedu.vo.JsonBean;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -66,6 +67,15 @@ public class UserController {
         System.out.println("返回页面的json数据："+map);
         return map;
     }
+
+    //删除用户角色信息
+    @RequestMapping("/userdel.do")
+    @ResponseBody
+    public JsonBean delete(Integer id){
+        userService.deleteById(id);
+        return new JsonBean(1,null);
+    }
+
 
 
 }
