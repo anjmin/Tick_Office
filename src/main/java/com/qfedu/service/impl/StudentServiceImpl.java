@@ -53,4 +53,10 @@ public class StudentServiceImpl implements StudentService {
     public void deleteStuByNo(String no) {
         studentDao.deleteStuByNo(no);
     }
+
+    //新增学员信息
+    @Override
+    public void studentAdd(Student student) {
+        studentDao.studentAdd(student);
+    }
 }

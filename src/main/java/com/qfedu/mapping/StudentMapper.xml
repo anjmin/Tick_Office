@@ -44,4 +44,11 @@
 	<delete id="deleteStuByNo" parameterType="String">
 		delete from t_student where no=#{no}
 	</delete>
+	<!--新增学员信息-->
+	<insert id="studentAdd" parameterType="student">
+		insert INTO t_student (no,name,sex,email,phone,qq,cardno,school,education,gid,birthday,createdate)VALUES
+        (#{no},#{name},#{sex},#{email},#{phone},#{qq},#{cardno},
+        #{school},#{education},#{gid},#{birthday},#{createdate})
+
+	</insert>
 </mapper>

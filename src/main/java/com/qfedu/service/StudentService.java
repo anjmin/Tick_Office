@@ -17,4 +17,7 @@ public interface StudentService {
 
     //删除学生信息
     void deleteStuByNo(String no);
+
+    //新增学员信息
+    void studentAdd(Student student);
 }
