@@ -1,5 +1,7 @@
 package com.qfedu.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Staff {
@@ -21,6 +23,7 @@ public class Staff {
     // 手机号
     private String phone;
     // 入职日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdate;
     // 图片
     private String photo;

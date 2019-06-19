@@ -1,14 +1,23 @@
 package com.qfedu.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
+import java.util.List;
 
 public class Depart {
+    //部门编号
     private Integer id;
+    //部门名称
     private String name;
+    //创建时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createtime;
+    //部门状态
     private Integer flag;
 
-    private Staff staff;
+    //一对多
+    private List<Staff> listSta;
 
     public Integer getId() {
         return id;
@@ -42,12 +51,12 @@ public class Depart {
         this.flag = flag;
     }
 
-    public Staff getStaff() {
-        return staff;
+    public List<Staff> getListSta() {
+        return listSta;
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
+    public void setListSta(List<Staff> listSta) {
+        this.listSta = listSta;
     }
 
     @Override

@@ -32,7 +32,13 @@
 		    ,cols: [[ //表头
 		      {field: 'id', title: '序号', sort: true, fixed: 'left'}
 		      ,{field: 'name', title: '部门名称'}
-		      ,{field: 'dcount', title: '部门人数', sort: true}
+		      ,{field: 'listSta', title: '部门人数', templet:function (obj) {
+						  var did;
+						  for (var i=0;i<obj.listSta.length;i++){
+						  	did=obj.listSta[i].did;
+						  	return did;
+						  }
+					  }}
 		      ,{field: 'createtime', title: '成立日期'}
 		      ,{field:'right', title: '操作',toolbar:"#barop"}
 		    ]]
@@ -47,7 +53,7 @@
 		                    type: "POST",
 		                    data:"id="+data.id,
 		                    success: function(data){
-		                        if(data.code==1000){
+		                        if(data.code==1){
 		                            obj.del();//删除表格中的对应行数据
 		                            layer.close(index);
 		                            layer.msg("删除成功", {icon: 6});

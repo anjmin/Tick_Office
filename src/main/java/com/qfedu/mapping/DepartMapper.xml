@@ -8,13 +8,36 @@
         <result property="name" column="name"></result>
         <result property="createtime" column="Createtime"></result>
         <result property="flag" column="flag"></result>
-        <collection property="staf" javaType="java.util.ArrayList" ofType="staff"
-                     resultMap="com.qfedu.pojo.Staff.staffMap"></collection>
+        <collection property="listSta" javaType="java.util.ArrayList" ofType="staff">
+            <id property="no" column="no"></id>
+            <result property="did" column="dcount"></result>
+        </collection>
     </resultMap>
+    <!--展示部门信息-->
+    <select id="departInfo" resultMap="departMap">
+        SELECT d.*,COUNT(did) AS dcount, s.did
+        FROM t_depart d LEFT JOIN t_staff s
+        ON d.id = s.did
+        GROUP BY did
+    </select>
 
+    <!--分页-->
+    <select id="findByIndexAndSize" parameterType="map" resultType="staff">
+		select * from t_depart limit #{index},#{size}
+	</select>
 
-
-
+    <!--删除 parameterType:参数类型  resultType/resultMap 都是返回值类型 、resultMap 是返回类型的结果集-->
+    <delete id="delDepById" parameterType="int">
+        delete from  t_depart where id=#{id}
+    </delete>
+    <!--添加-->
+    <insert id="addDep" parameterType="depart">
+        insert into t_depart (name,Createtime)values (#{name},#{createtime})
+    </insert>
+    <!--编辑 更新-->
+    <update id="updateDep" parameterType="depart">
+        update t_depart set name=#{name} where id=#{id}
+    </update>
 
 
 </mapper>

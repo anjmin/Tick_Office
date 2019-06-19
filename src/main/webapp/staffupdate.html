@@ -9,10 +9,34 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="media/layui/css/layui.css" media="all">
 <script type="text/javascript" src="media/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			var json=getData();
+			var obj=JSON.parse(decodeURI(json));
+			showData(obj);
+		})
+
+		function getData() {
+			var url=window.location.search;
+			index=url.indexOf("?");
+			if(index>-1){
+				var str = url.substr(index+1);
+				if(str.indexOf('=')){
+					return str.split('=')[1];
+				}
+			}
+			return null;
+		}
+		function showData(obj) {
+			$("#f1").val(obj.name);
+			$("#f2").val(obj.did);
+			$("#f3").val(obj.email);
+		}
+	</script>
 </head>
 <body>
 	<div class="layui-container">
-		<form class="layui-form" action="staffadd.do" method="post">
+		<form class="layui-form" action="staffupdate.do" method="post">
 			<div class="layui-form-item">
 				<label class="layui-form-label">员工姓名</label>
 				<div class="layui-input-block">

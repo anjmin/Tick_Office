@@ -18,7 +18,7 @@ public class StaffController {
     private StaffService staffService;
 
     //展示员工所有信息
-    @RequestMapping("/list.do")
+    @RequestMapping("/stafflist.do")
     public JsonBean list(){
         List<Staff> list = staffService.findAll();
         return  new JsonBean(1,null);
@@ -40,6 +40,18 @@ public class StaffController {
         staffService.delStaffById(no);
         return  new JsonBean(1,null);
     }
+    //编辑 更新员工
+    @RequestMapping("/staffupdate.do")
+    public JsonBean update(Staff sta){
+        staffService.updateStaff(sta);
+        return  new JsonBean(1,null);
+    }
 
+    // 添加员工
+    @RequestMapping("/staffadd.do")
+    public JsonBean add(Staff sta){
+        staffService.addStaff(sta);
+        return  new JsonBean(1,null);
+    }
 
 }
