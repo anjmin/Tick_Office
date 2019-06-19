@@ -1,5 +1,8 @@
 package com.qfedu.service;
 
+import com.qfedu.pojo.Student;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -8,4 +11,10 @@ import java.util.Map;
 public interface StudentService {
 
     Map<String,Object> findstudentByPage(Integer page, Integer limit);
+
+    //新增学生信息
+    void addStus(List<Student> studentsList);
+
+    //删除学生信息
+    void deleteStuByNo(String no);
 }

@@ -30,4 +30,18 @@
 		INNER JOIN t_grade g
 		on s.gid= g.id
 	</select>
+
+	<!--批量导入-->
+	<insert id="addStus" parameterType="list">
+		insert into t_student (no,name,sex,birthday,cardno,school,education,phone,email,flag,introno,qq,gid,createdate,photo)values
+		<foreach collection="list" item="stu" separator=",">
+			(#{stu.no},#{stu.name},#{stu.sex},#{stu.birthday},#{stu.cardno},#{stu.school},#{stu.education},#{stu.phone},#{stu.email},#{stu.flag},#{stu.introno},#{stu.qq},#{stu.gid},#{stu.createdate},#{stu.photo})
+		</foreach>
+	</insert>
+
+
+	<!--根据id删除对应的学生-->
+	<delete id="deleteStuByNo" parameterType="String">
+		delete from t_student where no=#{no}
+	</delete>
 </mapper>

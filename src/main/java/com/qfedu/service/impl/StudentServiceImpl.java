@@ -40,4 +40,17 @@ public class StudentServiceImpl implements StudentService {
 
         return map;
     }
+
+
+    //批量导入
+    @Override
+    public void addStus(List<Student> studentsList) {
+        studentDao.addStus(studentsList);
+    }
+
+    //删除学生信息
+    @Override
+    public void deleteStuByNo(String no) {
+        studentDao.deleteStuByNo(no);
+    }
 }
