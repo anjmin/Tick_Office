@@ -3,6 +3,7 @@ package com.qfedu.controller;
 
 import com.qfedu.pojo.Authority;
 import com.qfedu.service.AuthorityService;
+import com.qfedu.service.UserService;
 import com.qfedu.utils.GetIpUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -15,12 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
 
     @Autowired
     private AuthorityService authorityService;
+    @Autowired
+    private UserService userService;
 
     //登录
     @RequestMapping("/login.do")
@@ -53,6 +57,15 @@ public class UserController {
 
 
 
+    //用户角色展示列表、根据关键字查询
+    @ResponseBody
+    @RequestMapping("/userall.do")
+    public Map<String, Object> findAllByNoAndFg(String no,Integer flag,Integer page,Integer limit){
+
+        Map<String, Object> map = userService.findAllByNoAndFg(no, flag, page, limit);
+        System.out.println("返回页面的json数据："+map);
+        return map;
+    }
 
 
 }

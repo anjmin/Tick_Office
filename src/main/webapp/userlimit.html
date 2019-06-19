@@ -8,7 +8,8 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="media/layui/css/layui.css" media="all">
-    <script src="media/js/jquery.min.js"></script>
+    <script type="text/javascript" src="media/js/jquery.min.js"></script>
+    <script type="text/javascript" src="media/js/jquery-1.12.2.min.js"></script>
 </head>
 <body>
 
@@ -60,19 +61,29 @@
 <script>
     var tableIns;
     var form1;
-    layui.use(['table','form'], function () {
+    layui.use(['layer','table','form'], function () {
+        var layer = layui.layer;
         var table = layui.table;
-        form1=layui.form;
+        var form=layui.form;
         //第一个实例
         tableIns = table.render({
             elem: '#tbdata'
             , url: 'userall.do' //数据接口
-            , page: true //开启分页
+            , page: {layout:["prve","page","next","skip","count","limit"]
+            ,groups:1   //只显示1个连续页码
+            ,first: false   //不显示首页
+            ,last:false    //不显示尾页
+            ,limit:5
+            ,limits:[5,10,20]
+            }//开启分页
             , cols: [[ //表头
                 {field: 'id', title: '序号', sort: true, fixed: 'left'}
                 , {field: 'no', title: '工号'}
                 , {field: 'name', title: '姓名', sort: true}
-                , {field: 'role', title: '职位', sort: true}
+                , {
+                    field: 'role', title: '职位',templet: function (obj){
+                        return obj.role.info;
+                    }}
                 , {
                     field: 'flag', title: '有/无效', templet: function (obj) {
                         var r;

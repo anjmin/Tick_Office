@@ -23,6 +23,7 @@ public class StaffController {
         List<Staff> list = staffService.findAll();
         return  new JsonBean(1,null);
     }
+
     //分页展示员工信息
     @RequestMapping("/staffpage.do")
     public Map<String, Object> findByPage(Integer page, Integer limit){
