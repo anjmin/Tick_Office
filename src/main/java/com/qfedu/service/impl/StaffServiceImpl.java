@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Service
 public class StaffServiceImpl implements StaffService {
-    @Autowired
+    @Autowired(required = false)
     private StaffDao staffDao;
 
 

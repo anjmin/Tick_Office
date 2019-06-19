@@ -5,13 +5,28 @@ package com.qfedu.pojo;
  */
 public class User {
 
-
+    //用户序号
     private  Integer id;
+    //用户工号
     private  String no;
+    //用户密码
     private String password;
+    //用户名字
     private  String name;
+    //用户状态
     private Integer flag;
+    //用户头像
     private  String headphoto;
+    //用户角色
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public Integer getId() {
         return id;
@@ -70,6 +85,9 @@ public class User {
                 ", name='" + name + '\'' +
                 ", flag=" + flag +
                 ", headphoto='" + headphoto + '\'' +
+                ", role=" + role +
                 '}';
     }
+
+
 }

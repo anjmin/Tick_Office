@@ -6,6 +6,6 @@
 
 	<!--查找用户-->
 	<select id="findLoginLog" parameterType="string" resultType="loginLog">
-		SELECT * from t_loginlog where no=#{no}
+		SELECT * from t_loginlog where no=#{no} order by order by createtime desc
 	</select>
 </mapper>

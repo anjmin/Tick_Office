@@ -4,6 +4,21 @@
 
 <mapper namespace="com.qfedu.dao.UserDao">
 
+	<!--映射-->
+	<resultMap id="userMap" type="user">
+		<id column="id" property="id"></id>
+		<result column="no" property="no"></result>
+		<result column="password" property="password"></result>
+		<result column="name" property="name"></result>
+		<result column="flag" property="flag"></result>
+		<result column="headphoto" property="headphoto"></result>
+		<association property="role" resultMap="roleMap"></association>
+	</resultMap>
+	<!--嵌套对象，用来查询角色-->
+	<resultMap id="roleMap" type="role">
+		<result column="infos" property="info"></result>
+	</resultMap>
+
 	<!--查找用户-->
 	<select id="findByName" parameterType="string" resultType="user">
 		select * from t_user where no=#{no}
@@ -30,6 +45,24 @@
 		INNER JOIN t_authority a
 		on a.id=ra.aid
 		where u.no=#{no}
+	</select>
+
+	<!--根据工号、状态，查找全部用户角色列表-->
+	<select id="findAllByNoAndFg" parameterType="map" resultMap="userMap">
+		select u.id,u.no,u.name,r.id rid,group_concat(r.info)infos,u.flag from t_user u
+		inner join t_userrole ur
+		on ur.uid = u.id
+		inner join t_role r
+		on ur.rid = r.id
+		where 1=1
+		<if test="no !=null and no !=''">
+			and u.no = #{no}
+		</if>
+		<if test="flag !=null and flag !=''">
+			and u.flag = #{flag}
+		</if>
+		GROUP BY u.id
+		ORDER BY r.info desc
 	</select>
 
 </mapper>
