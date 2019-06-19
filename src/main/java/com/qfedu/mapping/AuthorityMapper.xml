@@ -6,10 +6,10 @@
 
     <resultMap id="authorityMap" type="authority">
         <id column="id" property="id"></id>
-        <result column="acion" property="acion"></result>
+        <result column="icon" property="icon"></result>
         <result column="aurl" property="aurl"></result>
         <result column="title" property="title"></result>
-        <collection property="childs" javaType="java.util.ArrayList" ofType="com.qfedu.pojo.Authority">
+        <collection property="childs" javaType="java.util.ArrayList" ofType="authority">
             <id column="cid" property="id"></id>
             <result column="caurl" property="aurl"></result>
             <result column="ctitle" property="title"></result>
@@ -18,7 +18,7 @@
 
     <!--查询菜单子菜单-->
     <select id="findUserMenuByNo" parameterType="String" resultMap="authorityMap">
-      select a.id,a.aicon,a.aurl,a.title,c.id cid,c.aurl caurl,c.title ctitle from t_authority a
+      select a.id,a.aicon icon,a.aurl,a.title,c.id cid,c.aurl caurl,c.title ctitle from t_authority a
 		inner join t_authority c
 		on a.id=c.parentId
 		inner join t_roleauthority ra

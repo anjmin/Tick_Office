@@ -2,24 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qfedu.dao.StudentDao">
 	<resultMap id="studentMap" type="student">
-		<id column="no" property=""></id>
-		<result column="" property=""></result>
-		<result column="" property=""></result>
-		<result column="" property=""></result>
-		<result column="" property=""></result>
-		<result column="" property=""></result>
-		<result column="" property=""></result>
-		<result column="" property=""></result>
-		<result column="" property=""></result>
+		<id column="no" property="no"></id>
+		<result column="name" property="name"></result>
+		<result column="sex" property="sex"></result>
+		<result column="birthday" property="birthday"></result>
+		<result column="cardno" property="cardno"></result>
+		<result column="school" property="school"></result>
+		<result column="education" property="education"></result>
+		<result column="gid" property="gid"></result>
+		<result column="flag" property="flag"></result>
+		<result column="email" property="email"></result>
+		<result column="qq" property="qq"></result>
+		<result column="phone" property="phone"></result>
+		<result column="introno" property="introno"></result>
+		<result column="createdate" property="createdate"></result>
+		<result column="photo" property="photo"></result>
+		<association   property="grade"  resultMap="gradeMap"></association >
+	</resultMap>
+	<resultMap   id="gradeMap"  type="grade">
+		<id  column="id"  property="id"></id>
+		<result  column="gname"  property="gname"></result>
 	</resultMap>
 
 	<!--查询所有学生-->
-	<select id="findAll" resultType="student">
+	<select id="findAll" resultMap="studentMap">
 		select s.* ,g.name as gname from t_student s
 		INNER JOIN t_grade g
 		on s.gid= g.id
 	</select>
-
-	
-
 </mapper>

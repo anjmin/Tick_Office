@@ -11,7 +11,7 @@ public class Authority {
     private  Integer id;
 
     //图标
-    private  String aicon;
+    private  String icon;
 
     //权限  绑定数据跳转用的
     private String aurl;
@@ -30,12 +30,12 @@ public class Authority {
         this.id = id;
     }
 
-    public String getAicon() {
-        return aicon;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setAicon(String aicon) {
-        this.aicon = aicon;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getAurl() {
@@ -67,7 +67,7 @@ public class Authority {
     public String toString() {
         return "Authority{" +
                 "id=" + id +
-                ", aicon='" + aicon + '\'' +
+                ", icon='" + icon + '\'' +
                 ", aurl='" + aurl + '\'' +
                 ", title='" + title + '\'' +
                 ", childs=" + childs +

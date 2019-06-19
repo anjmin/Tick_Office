@@ -7,12 +7,19 @@ import java.util.Date;
  */
 public class Grade {
 
+    //id
     private Integer id;
-    private String name;
+    //班级名字
+    private String gname;
+    //标记位
     private Integer flag;
+    //周期
     private int week;
+    //开班日期
     private Date createdate;
+    //位置
     private String location;
+    //学科编号
     private int cid;
 
     public Integer getId() {
@@ -23,12 +30,12 @@ public class Grade {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getGname() {
+        return gname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGname(String gname) {
+        this.gname = gname;
     }
 
     public Integer getFlag() {
@@ -71,12 +78,11 @@ public class Grade {
         this.cid = cid;
     }
 
-
     @Override
     public String toString() {
         return "Grade{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", gname='" + gname + '\'' +
                 ", flag=" + flag +
                 ", week=" + week +
                 ", createdate=" + createdate +

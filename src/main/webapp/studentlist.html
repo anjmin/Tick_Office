@@ -33,7 +33,8 @@
 		    ,cols: [[ //表头
 		      {field: 'no', title: '学号', sort: true, fixed: 'left'}
 		      ,{field: 'name', title: '学员名称'}
-		      ,{field: 'gname', title: '所在班级'}
+				  ,{field: 'grade', title: '所在班级',templet:function (obj) {
+					  return obj.grade.gname;}}
 		      ,{field: 'sex', title: '性别'}
 		      ,{field: 'phone', title: '手机号'}
 		      ,{field: 'email', title: '邮箱'}
