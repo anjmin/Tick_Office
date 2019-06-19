@@ -45,8 +45,10 @@
 	<select id="count" resultType="int">
 		select count(*) from t_staff
 	</select>
-
-	<!--<delete id="selectStaff" -->
+	<!--刪除員工細信息-->
+	<delete id="delStaff" parameterType="string">
+		delete from  t_staff where no=#{no}
+	</delete>
 	
 
 </mapper>

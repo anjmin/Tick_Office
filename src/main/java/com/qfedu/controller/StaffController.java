@@ -29,6 +29,12 @@ public class StaffController {
         Map<String, Object> map = staffService.findByPage(page, limit);
         return map;
     }
+    //删除员工信息
+    @RequestMapping("/staffdelete.do")
+    public JsonBean del(String no){
+        staffService.delStaffById(no);
+        return  new JsonBean(1,null);
+    }
 
 
 }

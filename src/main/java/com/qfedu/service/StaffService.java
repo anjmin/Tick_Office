@@ -13,6 +13,7 @@ public interface StaffService {
     public List<Staff> findAll();
     //分页
     public Map<String,Object> findByPage(Integer page,Integer limit);
-    // 总记录数
+    // 删除员工信息
+    public void delStaffById(String no);
 
 }

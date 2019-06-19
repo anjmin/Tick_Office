@@ -56,4 +56,9 @@ public class StaffServiceImpl implements StaffService {
 
         return map;
     }
+//    删除员工信息
+    @Override
+    public void delStaffById(String no) {
+        staffDao.delStaff(no);
+    }
 }
