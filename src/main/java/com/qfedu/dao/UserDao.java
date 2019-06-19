@@ -20,4 +20,7 @@ public interface UserDao {
 
     //查询所有用户角色
     List<User> findAllByNoAndFg(@Param("no") String no, @Param("flag") Integer flag);
+
+    //删除用户角色
+    void deleteById(Integer id);
 }
