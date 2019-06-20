@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.GradeDao">
+	<resultMap id="resultGradeMap" type="gradeVo">
+		<id column="id" property="id"></id>
+		<result column="gname" property="gname"></result>
+		<result column="gflag" property="flag"></result>
+		<result column="gweek" property="week"></result>
+		<result column="gcreatedate" property="createdate"></result>
+		<result column="location" property="location"></result>
+		<result column="cid" property="cid"></result>
+		<result column="count" property="count"></result>
+		<result column="cname" property="cname"></result>
+	</resultMap>
+
+
+	<!--分页查询所有班级-->
+	<select id="findAll" resultMap="resultGradeMap">
+	select c.name as cname,g.id,g.name as gname,g.flag as gflag,g.week as gweek,g.createdate as gcreatedate,g.location,g.cid,s.*
+	 from (t_grade g left join (select gid,count(*) as count from t_student group by gid) s
+	on g.id = s.gid) LEFT JOIN t_course c on g.cid = c.id
+	</select>
+</mapper>

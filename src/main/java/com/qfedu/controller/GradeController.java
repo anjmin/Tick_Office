@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2019/6/19 0019.
@@ -26,5 +27,14 @@ public class GradeController {
         List<Grade> list = gradeService.gradeAll();
         System.out.println("查出来的班级："+list);
         return list;
+    }
+
+    //分页查询班级学科
+    @RequestMapping("/gradepage.do")
+    @ResponseBody
+    public Map<String, Object> findGradeByPage(Integer page, Integer limit){
+        Map<String, Object> map = gradeService.findGradeByPage(page, limit);
+        System.out.println("展示学员信息"+map);
+        return map;
     }
 }

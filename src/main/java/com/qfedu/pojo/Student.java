@@ -38,8 +38,8 @@ public class Student {
     private Date createdate;
     //照片
     private String photo;
-    //嵌套班级对象
-    private Grade grade;
+   /* //嵌套班级对象
+    private Grade grade;*/
 
     public String getNo() {
         return no;
@@ -161,14 +161,6 @@ public class Student {
         this.photo = photo;
     }
 
-    public Grade getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Grade grade) {
-        this.grade = grade;
-    }
-
 
     @Override
     public String toString() {
@@ -188,7 +180,6 @@ public class Student {
                 ", introno='" + introno + '\'' +
                 ", createdate=" + createdate +
                 ", photo='" + photo + '\'' +
-                ", grade=" + grade +
                 '}';
     }
 }

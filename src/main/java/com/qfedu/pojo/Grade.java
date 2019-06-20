@@ -22,6 +22,12 @@ public class Grade {
     //学科编号
     private int cid;
 
+    /*//嵌套学科
+    private Course course;
+
+    //嵌套学生
+    private List<Student> studentList;*/
+
     public Integer getId() {
         return id;
     }
@@ -77,6 +83,7 @@ public class Grade {
     public void setCid(int cid) {
         this.cid = cid;
     }
+
 
     @Override
     public String toString() {

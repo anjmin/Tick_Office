@@ -2,9 +2,9 @@ package com.qfedu.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.qfedu.dao.GradeDao;
-import com.qfedu.pojo.Grade;
-import com.qfedu.service.GradeService;
+import com.qfedu.dao.CourseDao;
+import com.qfedu.pojo.Course;
+import com.qfedu.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,26 +13,20 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2019/6/19 0019.
+ * Created by Administrator on 2019/6/20 0020.
  */
+
 @Service
-public class GradeServiceImpl implements GradeService {
+public class CourseServiceImpl implements CourseService {
 
     @Autowired(required = false)
-    private GradeDao gradeDao;
+    private CourseDao courseDao;
 
-    //查询所有班级
+    //分页展示学科
     @Override
-    public List<Grade> gradeAll() {
-        List<Grade> list=gradeDao.findAll();
-        return list;
-    }
-
-    //查询所有班级分页
-    @Override
-    public Map<String, Object> findGradeByPage(Integer page, Integer limit) {
+    public Map<String, Object> findCourseByPage(Integer page, Integer limit) {
         PageHelper.startPage(page,limit);
-        List<Grade> list = gradeDao.findAll();
+        List<Course> list = courseDao.findCourseAll();
         System.out.println(list);
         //获取总记录数
         long total = ((Page) list).getTotal();
@@ -44,6 +38,25 @@ public class GradeServiceImpl implements GradeService {
         map.put("msg", "");
         map.put("count", total);
         map.put("data", list);
+
         return map;
+    }
+
+    //根据ID删除学科
+    @Override
+    public void courseDeleteById(Integer id) {
+        courseDao.courseDeleteById(id);
+    }
+
+    //新增学科
+    @Override
+    public void courseAdd(Course course) {
+        courseDao.courseAdd(course);
+    }
+    //修改学科
+    @Override
+    public void courseUpdate(Course course) {
+        courseDao.courseUpdate(course);
+
     }
 }
