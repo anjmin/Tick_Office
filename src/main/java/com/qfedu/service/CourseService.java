@@ -2,6 +2,7 @@ package com.qfedu.service;
 
 import com.qfedu.pojo.Course;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,4 +17,6 @@ public interface CourseService {
     void courseAdd(Course course);
 
     void courseUpdate(Course course);
+
+    List<Course> gradeAll();
 }

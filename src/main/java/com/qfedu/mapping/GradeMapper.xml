@@ -3,7 +3,7 @@
 <mapper namespace="com.qfedu.dao.GradeDao">
 	<resultMap id="resultGradeMap" type="gradeVo">
 		<id column="id" property="id"></id>
-		<result column="gname" property="gname"></result>
+		<result column="gname" property="name"></result>
 		<result column="gflag" property="flag"></result>
 		<result column="gweek" property="week"></result>
 		<result column="gcreatedate" property="createdate"></result>
@@ -20,4 +20,43 @@
 	 from (t_grade g left join (select gid,count(*) as count from t_student group by gid) s
 	on g.id = s.gid) LEFT JOIN t_course c on g.cid = c.id
 	</select>
+
+	<!--删除班级-->
+	<delete id="gradeDeleteById" parameterType="Integer">
+
+ 	DELETE from t_grade WHERE id=#{id}
+
+	</delete>
+
+	<!--新增班级-->
+	<insert id="gradeAdd" parameterType="grade">
+	insert into t_grade(name,week,createdate,location,cid)values(#{name},#{week},#{createdate},#{location},#{cid})
+	</insert>
+
+	<!--修改班级-->
+	<update id="gradeUpdate" parameterType="grade">
+		update t_grade
+		<set >
+			<if test="name != null" >
+				name = #{name},
+			</if>
+			<if test="flag != null" >
+				flag = #{flag},
+			</if>
+			<if test="week != null" >
+				week = #{week},
+			</if>
+			<if test="createdate != null" >
+				createdate = #{createdate},
+			</if>
+			<if test="location != null" >
+				location = #{location},
+			</if>
+			<if test="cid != null" >
+				cid = #{cid},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
 </mapper>

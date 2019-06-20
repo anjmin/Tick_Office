@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -53,4 +54,16 @@ public class CourseController {
         courseService.courseUpdate(course);
         return "redirect:/courselist.html";
     }
+
+
+    //查询所有学科
+
+    @RequestMapping("/courseall.do")
+    @ResponseBody
+    public List<Course> gradeall() {
+        List<Course> list = courseService.gradeAll();
+        System.out.println("查出来的班级："+list);
+        return list;
+    }
+
 }

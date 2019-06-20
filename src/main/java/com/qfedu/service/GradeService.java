@@ -13,4 +13,10 @@ public interface GradeService {
     List<Grade> gradeAll();
 
     Map<String,Object> findGradeByPage(Integer page, Integer limit);
+
+    void gradeDeleteById(Integer id);
+
+    void gradeAdd(Grade grade);
+
+    void gradeUpdate(Grade grade);
 }

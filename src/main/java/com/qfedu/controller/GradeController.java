@@ -2,6 +2,7 @@ package com.qfedu.controller;
 
 import com.qfedu.pojo.Grade;
 import com.qfedu.service.GradeService;
+import com.qfedu.vo.JsonBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,4 +38,31 @@ public class GradeController {
         System.out.println("展示学员信息"+map);
         return map;
     }
+
+    //删除班级
+    @RequestMapping("/gradedelete.do")
+    @ResponseBody
+    public JsonBean gradeDeleteById(Integer id){
+        System.out.println("删除班级序号:"+id);
+        gradeService.gradeDeleteById(id);
+        return new JsonBean(1,null);
+    }
+
+    //新增班级
+    @RequestMapping("/gradeadd.do")
+    public String gradeAdd(Grade grade){
+        System.out.println("新增班级信息："+grade);
+        gradeService.gradeAdd(grade);
+        return "redirect:/gradelist.html";
+
+    }
+
+    //修改班级
+    @RequestMapping("/gradeupdate.do")
+    public String gradeUpdate(Grade grade){
+        System.out.println("修改班级信息："+grade);
+        gradeService.gradeUpdate(grade);
+        return "redirect:/gradelist.html";
+    }
+
 }

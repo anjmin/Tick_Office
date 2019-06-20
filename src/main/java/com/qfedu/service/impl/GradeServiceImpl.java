@@ -46,4 +46,20 @@ public class GradeServiceImpl implements GradeService {
         map.put("data", list);
         return map;
     }
+
+    //删除班级
+    @Override
+    public void gradeDeleteById(Integer id) {
+        gradeDao.gradeDeleteById(id);
+    }
+    //新增班级
+    @Override
+    public void gradeAdd(Grade grade) {
+        gradeDao.gradeAdd( grade);
+    }
+    //修改班级
+    @Override
+    public void gradeUpdate(Grade grade) {
+        gradeDao.gradeUpdate( grade);
+    }
 }

@@ -59,4 +59,10 @@ public class CourseServiceImpl implements CourseService {
         courseDao.courseUpdate(course);
 
     }
+    //查询所有学科
+    @Override
+    public List<Course> gradeAll() {
+        List<Course> list = courseDao.findCourseAll();
+        return list;
+    }
 }
