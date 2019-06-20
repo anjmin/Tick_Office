@@ -47,12 +47,20 @@ public class StaffController {
         return  new JsonBean(1,null);
     }
 
-    // 添加员工 编辑 更新员工
-    @RequestMapping("/staffadd.do")
-    public String addStaff(Staff staInfo,String myid,@RequestParam("file") MultipartFile file){
-
+    //新增学员
+    @RequestMapping("staffadd.do")
+    public String staffAdd(Staff staInfo){
+        System.out.println("新增员工信息："+staInfo);
         staffService.addStaff(staInfo);
-       return  null;
+        return "redirect:/stafflist.html";
+
+    }
+
+    // 添加员工 编辑 更新员工
+    @RequestMapping("/staffupdate.do")
+    public String staUpdate(Staff staInfo){
+        staffService.updateStaff(staInfo);
+        return "redirect:/stafflist.html";
     }
     //圖片寫死
     @RequestMapping("/photoupload.do")

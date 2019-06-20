@@ -160,7 +160,7 @@
 		function initData() {
 			$.get("gradeall.do",null,function(arr){
 				for(i=0;i<arr.length;i++){
-					$("#cds").append("<option value='"+arr[i].id+"'>"+arr[i].gname+"</option>");
+					$("#cds").append("<option value='"+arr[i].id+"'>"+arr[i].name+"</option>");
 				}
 				form.render("select");
 			});

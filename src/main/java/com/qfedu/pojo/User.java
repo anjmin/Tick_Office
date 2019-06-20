@@ -19,15 +19,16 @@ public class User {
     private Integer flag;
     //用户头像
     private  String headphoto;
-    //用户角色
-    private List<Role> rolelist;
 
-    public List<Role> getRolelist() {
-        return rolelist;
+    //用户角色
+    private List<Role> rids;
+
+    public List<Role> getRids() {
+        return rids;
     }
 
-    public void setRolelist(List<Role> rolelist) {
-        this.rolelist = rolelist;
+    public void setRids(List<Role> rids) {
+        this.rids = rids;
     }
 
     public Integer getId() {
@@ -87,7 +88,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", flag=" + flag +
                 ", headphoto='" + headphoto + '\'' +
-                ", rolelist=" + rolelist +
+                ", rids=" + rids +
                 '}';
     }
 }

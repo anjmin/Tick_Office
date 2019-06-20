@@ -12,7 +12,8 @@
 		<result column="name" property="name"></result>
 		<result column="flag" property="flag"></result>
 		<result column="headphoto" property="headphoto"></result>
-		<collection property="rolelist" ofType="role">
+		<collection property="rids" ofType="role">
+			<id column="rid" property="id"></id>
 			<result column="infos" property="info"></result>
 		</collection>
 	</resultMap>
@@ -70,18 +71,5 @@
 		on u.id = ur.uid
 		where u.id=#{id}
 	</delete>
-
-	<!--修改用户信息-->
-	<update id="updateUserById" parameterType="user">
-		update t_user
-		<set>
-			<if test="no != null and no !=''">
-				no = #{no}
-			</if>
-		</set>
-		where id = #{id}
-	</update>
-
-
 
 </mapper>

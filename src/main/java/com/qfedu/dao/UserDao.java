@@ -1,6 +1,5 @@
 package com.qfedu.dao;
 
-import com.qfedu.pojo.Role;
 import com.qfedu.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,9 +23,5 @@ public interface UserDao {
 
     //删除用户角色
     void deleteById(Integer id);
-
-    //修改用户信息
-    void updateUserById(User user, Integer id);
-
 
 }

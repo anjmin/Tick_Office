@@ -2,8 +2,6 @@ package com.qfedu.controller;
 
 
 import com.qfedu.pojo.Authority;
-import com.qfedu.pojo.Role;
-import com.qfedu.pojo.User;
 import com.qfedu.service.AuthorityService;
 import com.qfedu.service.UserService;
 import com.qfedu.utils.GetIpUtils;
@@ -77,13 +75,6 @@ public class UserController {
         return new JsonBean(1, null);
     }
 
-    //修改用户角色信息
-    @RequestMapping("/userroleedit.do")
-    @ResponseBody
-    public JsonBean updateUser(User user, Integer id) {
-        userService.updateUserById(user, id);
-        return new JsonBean(1, null);
-    }
 
 
 }

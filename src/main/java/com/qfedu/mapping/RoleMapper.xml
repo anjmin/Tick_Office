@@ -7,25 +7,11 @@
         <id column="id" property="id"></id>
         <result column="info" property="info"></result>
         <result column="name" property="name"></result>
-        <association property="user" resultMap="com.qfedu.dao.UserDao.userMap"></association>
-        <collection property="rolelist" ofType="role">
-            <id column="cid" property="id"></id>
-            <result column="cinfo" property="info"></result>
-            <result column="cname" property="name"></result>
-        </collection>
     </resultMap>
 
-    <!--查询所有角色信息-->
-    <select id="findUserRoleAll"  resultMap="roleMap">
-        select u.id,u.no,r.info from t_role r
-        INNER JOIN t_userrole ur
-        on ur.rid = r.id
-        INNER JOIN t_user u
-        on ur.uid = u.id
-    </select>
-
-    <select id="findRoleAll" resultMap="roleMap">
+    <select id="findRoleAll" resultType="role">
         select * from t_role
     </select>
+
 
 </mapper>
