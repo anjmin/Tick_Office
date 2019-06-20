@@ -21,4 +21,6 @@ public interface StaffDao {
     public void addStaff(Staff sta);
     // 更新员工
     public void updateStaff(Staff sta);
+//    查编号
+//    Staff  findDate(String no);
 }

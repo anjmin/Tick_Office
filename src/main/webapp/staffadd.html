@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,7 +102,7 @@
 							    ,done: function(obj){
 							      //上传完毕回调
 							      console.log(obj);
-							      if(obj.code==1000){
+							      if(obj.code==1){
 							    	  $("#p1").val(obj.msg);
 								      $("#img1")[0].src="/tickresource/"+obj.msg;
 							      	  $("#btn1").attr("disabled",false);
@@ -142,14 +143,14 @@
 				}
 				form.render("select");
 			});
-			$.get("staffno.do",null,function(obj){
-				if(obj.msg=='null'){
-					$("#no1").val("qf000001");
-				}else{
-					$("#no1").val(obj.msg+1);
-				}
-				
-			})
+			// $.get("staffno.do",null,function(obj){
+			// 		if(obj.msg=='null'){
+			// 			$("#no1").val("qf000001");
+			// 		}else{
+			// 			$("#no1").val(obj.msg+1);
+			// 		}
+			//
+			// })
 		}
 	</script>
 </body>

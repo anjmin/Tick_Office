@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Map;
 @Controller
-@ResponseBody
+
 public class DepartController {
 
     @Autowired
@@ -21,6 +21,7 @@ public class DepartController {
 
     //展示部门所有信息
     @RequestMapping("/departlist.do")
+    @ResponseBody
     public JsonBean list(){
         List<Depart> depart = departService.findDepart();
         return  new JsonBean(1,null);
@@ -29,12 +30,14 @@ public class DepartController {
 
     //分页展示部门信息
     @RequestMapping("/departpage.do")
+    @ResponseBody
     public Map<String, Object> findByPage(Integer page, Integer limit){
         Map<String, Object> map = departService.findByPage(page, limit);
         return map;
     }
     //删除部门信息
     @RequestMapping("/departdelete.do")
+    @ResponseBody
     public JsonBean del(Integer id){
         departService.delDepById(id);
         return  new JsonBean(1,null);
@@ -44,6 +47,12 @@ public class DepartController {
     public String update(Depart dep){
         departService.updateDep(dep);
         return "redirect:/departlist.html";
+    }
+    @RequestMapping("/departall.do")
+    @ResponseBody
+    public List<Depart> depAll(){
+        List<Depart> depart = departService.findDepart();
+        return depart;
     }
 
     // 添加部门

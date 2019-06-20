@@ -31,17 +31,21 @@
 			$("#f1").val(obj.name);
 			$("#f2").val(obj.did);
 			$("#f3").val(obj.email);
+			$("#f4").val(obj.phone);
+			$("#f5").val(obj.qq);
+			$("#f6").val(obj.createdate);
+
 		}
 	</script>
 </head>
 <body>
 	<div class="layui-container">
-		<form class="layui-form" action="staffupdate.do" method="post">
+		<form class="layui-form" action="staffadd.do" method="post">
 			<div class="layui-form-item">
 				<label class="layui-form-label">员工姓名</label>
 				<div class="layui-input-block">
 					<input type="text" name="name" lay-verify="name" autocomplete="off"
-						placeholder="请输入姓名" class="layui-input">
+						placeholder="请输入姓名" class="layui-input" id="f1">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -52,7 +56,7 @@
 	      			</select>
 	            </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item" id="f2">
             <label class="layui-form-label">性别</label>
 	            <div class="layui-input-block">
 	                <input type="radio" name="sex" value="男" title="男" checked>
@@ -62,25 +66,29 @@
 	  		<div class="layui-form-item">
 	            <label class="layui-form-label">邮箱</label>
 	            <div class="layui-input-inline">
-	                <input type="text" name="email" lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+	                <input type="text" name="email" lay-verify="required" placeholder="请输入邮箱"
+						   autocomplete="off" class="layui-input" id="f3">
 	            </div>
 	        </div>
 	  		<div class="layui-form-item">
 	            <label class="layui-form-label">手机号</label>
 	            <div class="layui-input-inline">
-	                <input type="text" name="phone" lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+	                <input type="text" name="phone" lay-verify="required" placeholder="请输入手机号"
+						   autocomplete="off" class="layui-input" id="f4">
 	            </div>
 	        </div>
 	  		<div class="layui-form-item">
 	            <label class="layui-form-label">QQ</label>
 	            <div class="layui-input-inline">
-	                <input type="text" name="qq" lay-verify="required" placeholder="请输入QQ" autocomplete="off" class="layui-input">
+	                <input type="text" name="qq" lay-verify="required" placeholder="请输入QQ"
+						   autocomplete="off" class="layui-input" id="f5">
 	            </div>
 	        </div>
 	  		<div class="layui-form-item">
 	             <label class="layui-form-label">入职日期</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="createdate" id="date" autocomplete="off" class="layui-input">
+                    <input type="text" name="createdate" id="date" autocomplete="off"
+						   class="layui-input" id="f6">
                 </div>
 	        </div>
  			<div class="layui-form-item">

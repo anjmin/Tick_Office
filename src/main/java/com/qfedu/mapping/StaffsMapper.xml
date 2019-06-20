@@ -62,6 +62,9 @@
 		email=#{email},qq=#{qq},phone=#{phone},
 		createdate=#{createdate},photo=#{photo}
 	</update>
+
+	<!--<select id="findDate"  resultType="staff">
+	</select>-->
 	
 
 </mapper>

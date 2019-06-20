@@ -1,6 +1,17 @@
 package com.qfedu.utils;
 
+;
+import com.google.gson.Gson;
+import com.qiniu.common.QiniuException;
+import com.qiniu.common.Zone;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.util.Auth;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ResourceBundle;
 
@@ -46,13 +57,13 @@ public class UploadUtils {
         return id;
     }
 */
-  /*  public String savePicPath(MultipartFile multipartFile){
+/* public String savePicPath(MultipartFile multipartFile){
         String upload = upload(multipartFile);
         String shoPicPath= path+"/"+upload;
         return  shoPicPath;
     }
-*/
-/*
+
+
 
         //七牛上传
     public String upload(MultipartFile multipartFile) {
@@ -68,9 +79,9 @@ public class UploadUtils {
             //拿到byte数组
             byte[] bytes = multipartFile.getBytes();
             //创建Auth对象  告诉它账户名和密码
-            Auth auth = Auth.create(accessKey, secretKey);
+            Auth auth = Auth.create("2575684300@qq.com","lushuai196316");
             //往哪个存储空间上传
-            String upToken = auth.uploadToken(bucket);
+            String upToken = auth.uploadToken("image");
             try {
 
                 Response response = uploadManager.put(bytes, key, upToken);
@@ -95,6 +106,7 @@ public class UploadUtils {
         }
         return null;
     }
-*/
 
+*/
 }
+
