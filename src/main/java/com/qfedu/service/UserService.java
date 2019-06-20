@@ -1,9 +1,5 @@
 package com.qfedu.service;
 
-import com.qfedu.pojo.Role;
-import com.qfedu.pojo.User;
-
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,6 +12,5 @@ public interface UserService {
 
     void deleteById(Integer id);
 
-    void updateUserById(User user, Integer id);
 
 }
