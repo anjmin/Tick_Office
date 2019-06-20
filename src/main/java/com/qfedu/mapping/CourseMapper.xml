@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qfedu.dao.CourseDao">
+
+	<!--分页查询所有-->
+	<select id="findCourseAll"  resultType="course">
+		select * from t_course
+	</select>
+
+	<delete id="courseDeleteById" parameterType="Integer">
+		delete from t_course where id=#{id}
+	</delete>
+
+	<insert id="courseAdd" parameterType="course">
+ 	INSERT INTO t_course (name,createdate,week,type) VALUES (#{name},#{createdate},#{week},#{type})
+	</insert>
+
+	<update id="courseUpdate" parameterType="course">
+		update t_course
+		<set >
+			<if test="name != null" >
+				name = #{name},
+			</if>
+			<if test="flag != null" >
+				flag = #{flag},
+			</if>
+			<if test="week != null" >
+				week = #{week},
+			</if>
+			<if test="createdate != null" >
+				createdate = #{createdate},
+			</if>
+			<if test="type != null" >
+				type = #{type},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper>

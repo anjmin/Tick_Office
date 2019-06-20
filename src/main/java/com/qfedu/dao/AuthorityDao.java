@@ -11,4 +11,8 @@ public interface AuthorityDao {
 
     //查询菜单
     List<Authority> findUserMenuByNo(String no);
+
+    List<Authority> findAllAuth();
+
+    void insertAuth(Authority auth);
 }

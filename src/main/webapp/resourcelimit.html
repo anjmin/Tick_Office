@@ -47,8 +47,8 @@
 		      ,{field: 'aurl', title: '页面路径',templet: function (obj) {
                           return obj.parentId==0?"":obj.aurl}
 				  }
-		      ,{field: 'aicon', title: '图标', templet: function (obj) {
-                          return "<span><i class=\"fa "+obj.aicon+"\"></i></span>";
+		      ,{field: 'icon', title: '图标', templet: function (obj) {
+                          return "<span><i class=\"fa "+obj.icon+"\"></i></span>";
                       }
 				  }
 		      ,{field: 'parentId', title: '级别', templet: function (obj) {
@@ -96,7 +96,7 @@
 					method:"post",
                     data: $("#fm1").serialize(),
                     success: function (obj) {
-                        if (obj.code == 1000) {
+                        if (obj.code == 1) {
                             layer.msg("新增权限成功");
                             searchData();
                         } else {
@@ -139,7 +139,7 @@
 		<div class="layui-form-item"  >
 			<label class="layui-form-label">图标：</label>
 			<div class="layui-input-inline">
-				<input name="aicon" class="layui-input">
+				<input name="icon" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item" >

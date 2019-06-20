@@ -2,6 +2,8 @@ package com.qfedu.controller;
 
 
 import com.qfedu.pojo.Authority;
+import com.qfedu.pojo.Role;
+import com.qfedu.pojo.User;
 import com.qfedu.service.AuthorityService;
 import com.qfedu.service.UserService;
 import com.qfedu.utils.GetIpUtils;
@@ -29,14 +31,14 @@ public class UserController {
 
     //登录
     @RequestMapping("/login.do")
-    public String login(String no, String password,HttpServletRequest request){
-        System.out.println("输入的用户名："+no+"输入的密码："+password);
+    public String login(String no, String password, HttpServletRequest request) {
+        System.out.println("输入的用户名：" + no + "输入的密码：" + password);
         UsernamePasswordToken token = new UsernamePasswordToken(no, password);
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
             String ip = GetIpUtils.getIp(request);
-            System.out.println("获取的ip地址："+ip);
+            System.out.println("获取的ip地址：" + ip);
             return "redirect:/index.jsp";
         } catch (AuthenticationException e) {
             e.printStackTrace();
@@ -45,38 +47,43 @@ public class UserController {
     }
 
 
-
     //菜单
     @ResponseBody
     @RequestMapping("/usermenu.do")
-    public  List<Authority> findUserMenuByNo( ){
-        String no=(String)SecurityUtils.getSubject().getPrincipal();
-        System.out.println("拿到的用户名："+no);
-       List<Authority> authorityList=authorityService.findUserMenuByNo(no);
-        System.out.println("菜单啊："+authorityList);
+    public List<Authority> findUserMenuByNo() {
+        String no = (String) SecurityUtils.getSubject().getPrincipal();
+        System.out.println("拿到的用户名：" + no);
+        List<Authority> authorityList = authorityService.findUserMenuByNo(no);
+        System.out.println("菜单啊：" + authorityList);
         return authorityList;
     }
-
 
 
     //用户角色展示列表、根据关键字查询
     @ResponseBody
     @RequestMapping("/userall.do")
-    public Map<String, Object> findAllByNoAndFg(String no,Integer flag,Integer page,Integer limit){
+    public Map<String, Object> findAllByNoAndFg(String no, Integer flag, Integer page, Integer limit) {
 
         Map<String, Object> map = userService.findAllByNoAndFg(no, flag, page, limit);
-        System.out.println("返回页面的json数据："+map);
+        System.out.println("返回页面的json数据：" + map);
         return map;
     }
 
     //删除用户角色信息
     @RequestMapping("/userdel.do")
     @ResponseBody
-    public JsonBean delete(Integer id){
+    public JsonBean delete(Integer id) {
         userService.deleteById(id);
-        return new JsonBean(1,null);
+        return new JsonBean(1, null);
     }
 
+    //修改用户角色信息
+    @RequestMapping("/userroleedit.do")
+    @ResponseBody
+    public JsonBean updateUser(User user, Integer id) {
+        userService.updateUserById(user, id);
+        return new JsonBean(1, null);
+    }
 
 
 }

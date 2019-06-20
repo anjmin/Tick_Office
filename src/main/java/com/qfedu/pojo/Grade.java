@@ -1,5 +1,7 @@
 package com.qfedu.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -10,17 +12,24 @@ public class Grade {
     //id
     private Integer id;
     //班级名字
-    private String gname;
+    private String name;
     //标记位
     private Integer flag;
     //周期
     private int week;
     //开班日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdate;
     //位置
     private String location;
     //学科编号
     private int cid;
+
+    /*//嵌套学科
+    private Course course;
+
+    //嵌套学生
+    private List<Student> studentList;*/
 
     public Integer getId() {
         return id;
@@ -30,12 +39,12 @@ public class Grade {
         this.id = id;
     }
 
-    public String getGname() {
-        return gname;
+    public String getName() {
+        return name;
     }
 
-    public void setGname(String gname) {
-        this.gname = gname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getFlag() {
@@ -78,11 +87,12 @@ public class Grade {
         this.cid = cid;
     }
 
+
     @Override
     public String toString() {
         return "Grade{" +
                 "id=" + id +
-                ", gname='" + gname + '\'' +
+                ", name='" + name + '\'' +
                 ", flag=" + flag +
                 ", week=" + week +
                 ", createdate=" + createdate +
