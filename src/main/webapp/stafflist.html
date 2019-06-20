@@ -32,7 +32,9 @@
 		    ,cols: [[ //表头
 		      {field: 'no', title: '工号', sort: true, fixed: 'left'}
 		      ,{field: 'name', title: '员工名称'}
-		      ,{field: 'dname', title: '所属部门'}
+		      ,{field: 'depart', title: '所属部门',templet:function (obj)
+                          {return obj.depart.name
+                      }}
 		      ,{field: 'sex', title: '性别'}
 		      ,{field: 'phone', title: '手机号'}
 		      ,{field: 'qq', title: 'qq号'}
@@ -46,15 +48,17 @@
 		        var data = obj.data;
 		        if(obj.event === 'del'){
 		            layer.confirm('是否确认删除员工?', function(index){
-		                $.ajax({
+						obj.del();//删除表格中的对应行数据
+						layer.close(index);
+		            	$.ajax({
 		                    url: "staffdelete.do",
 		                    type: "POST",
 		                    data:"no="+data.no,
 		                    success: function(data){
-		                        if(data.code==1000){
-		                            obj.del();//删除表格中的对应行数据
-		                            layer.close(index);
+		                        if(data.code==1){
+
 		                            layer.msg("删除成功", {icon: 6});
+		                            //window.location.href="stafflist.html";
 		                        }else{
 		                            layer.msg("删除失败", {icon: 5});
 		                        }

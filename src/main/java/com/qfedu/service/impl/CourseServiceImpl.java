@@ -2,9 +2,9 @@ package com.qfedu.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.qfedu.dao.StudentDao;
-import com.qfedu.pojo.Student;
-import com.qfedu.service.StudentService;
+import com.qfedu.dao.CourseDao;
+import com.qfedu.pojo.Course;
+import com.qfedu.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,19 +13,20 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2019/6/18 0018.
+ * Created by Administrator on 2019/6/20 0020.
  */
+
 @Service
-public class StudentServiceImpl implements StudentService {
+public class CourseServiceImpl implements CourseService {
 
     @Autowired(required = false)
-    private StudentDao studentDao;
+    private CourseDao courseDao;
 
-    //分页展示学生信息
+    //分页展示学科
     @Override
-    public Map<String, Object> findstudentByPage(Integer page, Integer limit) {
+    public Map<String, Object> findCourseByPage(Integer page, Integer limit) {
         PageHelper.startPage(page,limit);
-        List<Student> list = studentDao.findAll();
+        List<Course> list = courseDao.findCourseAll();
         System.out.println(list);
         //获取总记录数
         long total = ((Page) list).getTotal();
@@ -41,22 +42,21 @@ public class StudentServiceImpl implements StudentService {
         return map;
     }
 
-
-    //批量导入
+    //根据ID删除学科
     @Override
-    public void addStus(List<Student> studentsList) {
-        studentDao.addStus(studentsList);
+    public void courseDeleteById(Integer id) {
+        courseDao.courseDeleteById(id);
     }
 
-    //删除学生信息
+    //新增学科
     @Override
-    public void deleteStuByNo(String no) {
-        studentDao.deleteStuByNo(no);
+    public void courseAdd(Course course) {
+        courseDao.courseAdd(course);
     }
-
-    //新增学员信息
+    //修改学科
     @Override
-    public void studentAdd(Student student) {
-        studentDao.studentAdd(student);
+    public void courseUpdate(Course course) {
+        courseDao.courseUpdate(course);
+
     }
 }

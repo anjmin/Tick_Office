@@ -8,6 +8,8 @@ public class Depart {
     private Date createtime;
     private Integer flag;
 
+    private Staff staff;
+
     public Integer getId() {
         return id;
     }
@@ -38,6 +40,14 @@ public class Depart {
 
     public void setFlag(Integer flag) {
         this.flag = flag;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     @Override

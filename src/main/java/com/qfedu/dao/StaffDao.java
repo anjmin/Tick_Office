@@ -16,4 +16,9 @@ public interface StaffDao {
     // 获取总记录数
     public int count();
     //删除员工信息
+    public void delStaff(String no);
+    //添加员工
+    public void addStaff(Staff sta);
+    // 更新员工
+    public void updateStaff(Staff sta);
 }

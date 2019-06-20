@@ -27,15 +27,6 @@ public class Staff {
 
     private Depart depart;
 
-    private  String dname;
-
-    public String getDname() {
-        return depart.getName();
-    }
-
-    public void setDname(String dname) {
-        this.dname = dname;
-    }
 
     public String getNo() {
         return no;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qfedu.dao.StudentDao">
-	<resultMap id="studentMap" type="student">
+	<resultMap id="studentMap" type="studentVo">
 		<id column="no" property="no"></id>
 		<result column="name" property="name"></result>
 		<result column="sex" property="sex"></result>
@@ -17,12 +17,13 @@
 		<result column="introno" property="introno"></result>
 		<result column="createdate" property="createdate"></result>
 		<result column="photo" property="photo"></result>
-		<association   property="grade"  resultMap="gradeMap"></association >
+		<result column="gname" property="gname"></result>
+		<!--<association  property="grade"  resultMap="com.qfedu.dao.GradeDao.gradeMap"></association >-->
 	</resultMap>
-	<resultMap   id="gradeMap"  type="grade">
+	<!--<resultMap   id="gradeMap"  type="grade">
 		<id  column="id"  property="id"></id>
 		<result  column="gname"  property="gname"></result>
-	</resultMap>
+	</resultMap>-->
 
 	<!--查询所有学生-->
 	<select id="findAll" resultMap="studentMap">
@@ -30,4 +31,26 @@
 		INNER JOIN t_grade g
 		on s.gid= g.id
 	</select>
+
+	<!--批量导入-->
+	<insert id="addStus" parameterType="list">
+		insert into t_student (no,name,sex,birthday,cardno,school,education,phone,email,flag,introno,qq,gid,createdate,photo)values
+		<foreach collection="list" item="stu" separator=",">
+			(#{stu.no},#{stu.name},#{stu.sex},#{stu.birthday},#{stu.cardno},#{stu.school},#{stu.education},#{stu.phone},#{stu.email},#{stu.flag},#{stu.introno},#{stu.qq},#{stu.gid},#{stu.createdate},#{stu.photo})
+		</foreach>
+	</insert>
+
+
+	<!--根据id删除对应的学生-->
+	<delete id="deleteStuByNo" parameterType="String">
+		delete from t_student where no=#{no}
+	</delete>
+
+	<!--新增学员信息-->
+	<insert id="studentAdd" parameterType="student">
+		insert INTO t_student (no,name,sex,email,phone,qq,cardno,school,education,gid,birthday,createdate)VALUES
+        (#{no},#{name},#{sex},#{email},#{phone},#{qq},#{cardno},
+        #{school},#{education},#{gid},#{birthday},#{createdate})
+
+	</insert>
 </mapper>

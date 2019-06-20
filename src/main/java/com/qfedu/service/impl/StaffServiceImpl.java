@@ -8,6 +8,7 @@ import com.qfedu.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,5 +56,29 @@ public class StaffServiceImpl implements StaffService {
         map.put("data", list);
 
         return map;
+    }
+//    删除员工信息
+    @Override
+    public void delStaffById(String no) {
+        staffDao.delStaff(no);
+    }
+    //添加员工
+    @Override
+    public void addStaff(Staff sta) {
+        sta.setCreatedate(new Date());
+        if (sta.getFlag()==null){
+            //1 有效 2 无效
+            sta.setFlag(1);
+        }
+        staffDao.addStaff(sta);
+
+
+    }
+    //更新员工
+    @Override
+    public void updateStaff(Staff staInfo) {
+        staInfo.setCreatedate(new Date());
+        staffDao.updateStaff(staInfo);
+
     }
 }

@@ -23,12 +23,22 @@ public class StaffController {
         List<Staff> list = staffService.findAll();
         return  new JsonBean(1,null);
     }
-
+    @RequestMapping("/staffall.do")
+    public  List<Staff> staffall() {
+        List<Staff> list = staffService.findAll();
+        return list;
+    }
     //分页展示员工信息
     @RequestMapping("/staffpage.do")
     public Map<String, Object> findByPage(Integer page, Integer limit){
         Map<String, Object> map = staffService.findByPage(page, limit);
         return map;
+    }
+    //删除员工信息
+    @RequestMapping("/staffdelete.do")
+    public JsonBean del(String no){
+        staffService.delStaffById(no);
+        return  new JsonBean(1,null);
     }
 
 

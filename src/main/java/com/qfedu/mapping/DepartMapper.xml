@@ -8,7 +8,11 @@
         <result property="name" column="name"></result>
         <result property="createtime" column="Createtime"></result>
         <result property="flag" column="flag"></result>
+        <collection property="staf" javaType="java.util.ArrayList" ofType="staff"
+                     resultMap="com.qfedu.pojo.Staff.staffMap"></collection>
     </resultMap>
+
+
 
 
 
