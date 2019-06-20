@@ -45,8 +45,21 @@ public class AuthorityServiceImpl implements AuthorityService {
         return map;
     }
 
+    //添加权限
     @Override
     public void addAuth(Authority auth) {
         authorityDao.insertAuth(auth);
+    }
+
+
+    //根据页面传过来的pid设置parentId
+    @Override
+    public List<Authority> changePid(Integer pid) {
+        return authorityDao.findAllAuth();
+    }
+
+    @Override
+    public void deleteAuthById(Integer id) {
+        authorityDao.deleteAuthById(id);
     }
 }

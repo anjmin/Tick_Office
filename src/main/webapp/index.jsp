@@ -58,7 +58,7 @@
                     <shiro:principal></shiro:principal>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:showTab(1001,'user.html','我的信息');">我的信息</a></dd>
+                    <dd><a href="javascript:showTab(1001,'user.html','我的信息');" >我的信息</a></dd>
                     <dd><a href="javascript:showTab(1001,'user.html','更改头像');">更改头像</a></dd>
                     <dd><a href="javascript:showTab(1002,'user.html','修改密码');">修改密码</a></dd>
                 </dl>

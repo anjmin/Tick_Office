@@ -12,7 +12,12 @@ public interface AuthorityDao {
     //查询菜单
     List<Authority> findUserMenuByNo(String no);
 
+    //查找所有权限
     List<Authority> findAllAuth();
 
+    //新增权限
     void insertAuth(Authority auth);
+
+    //删除权限
+    void deleteAuthById(Integer id);
 }
