@@ -81,10 +81,10 @@
                 , {field: 'no', title: '工号'}
                 , {field: 'name', title: '姓名', sort: true}
                 , {
-                    field: 'rolelist', title: '职位',templet: function (obj){
+                    field: 'rids', title: '职位',templet: function (obj){
                         var infos;
-                        for(var i =0;i<obj.rolelist.length;i++){
-                            infos = obj.rolelist[i].info;
+                        for(var i =0;i<obj.rids.length;i++){
+                            infos = obj.rids[i].info;
                             return infos;
                         }
                     }}
@@ -159,11 +159,16 @@
     }
 
     function loadRoles(user) {
+        alert(user.rids[0].id);
+        var rids=[];
+        for(var i =0 ; i<user.rids.length;i++){
+            rids[i] = user.rids[i].id;
+        }
         $("#uid").val(user.id);
         $.get("roleall.do", null, function (arr) {
             $("#dv1").html("");
             for (i = 0; i < arr.length; i++) {
-                if(user.rids.indexOf(arr[i].id)>-1){
+                if(rids.indexOf(arr[i].id)>-1){
                     $("#dv1").append("<input type=\"checkbox\" name=\"rids\" value='" + arr[i].id + "' title=\"" + arr[i].info + "\" checked>");
                 }else{
                     $("#dv1").append("<input type=\"checkbox\" name=\"rids\" value='" + arr[i].id + "' title=\"" + arr[i].info + "\">");

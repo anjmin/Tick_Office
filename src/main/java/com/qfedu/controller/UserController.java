@@ -75,8 +75,6 @@ public class UserController {
         return new JsonBean(1, null);
     }
 
-    //修改用户角色信息
-
 
 
 }
