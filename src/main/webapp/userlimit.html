@@ -81,8 +81,12 @@
                 , {field: 'no', title: '工号'}
                 , {field: 'name', title: '姓名', sort: true}
                 , {
-                    field: 'role', title: '职位',templet: function (obj){
-                        return obj.role.info;
+                    field: 'rolelist', title: '职位',templet: function (obj){
+                        var infos;
+                        for(var i =0;i<obj.rolelist.length;i++){
+                            infos = obj.rolelist[i].info;
+                            return infos;
+                        }
                     }}
                 , {
                     field: 'flag', title: '有/无效', templet: function (obj) {
@@ -144,7 +148,7 @@
             url: "userroleedit.do",
             data: $("#fm1").serialize(),
             success: function (obj) {
-                if (obj.code == 1000) {
+                if (obj.code == 1) {
                     layer.msg("编辑权限成功");
                 } else {
                     layer.msg("编辑权限失败");
@@ -177,7 +181,7 @@
                         url: "userroleedit.do",
                         data: $("#fm1").serialize(),
                         success: function (obj) {
-                            if (obj.code == 1000) {
+                            if (obj.code == 1) {
                                 layer.msg("编辑权限成功");
                                 searchData();
                             } else {

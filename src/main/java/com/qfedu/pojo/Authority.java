@@ -22,6 +22,17 @@ public class Authority {
     //子菜单
     private List<Authority> childs;
 
+    //父id
+    private Integer parentId;
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -71,6 +82,7 @@ public class Authority {
                 ", aurl='" + aurl + '\'' +
                 ", title='" + title + '\'' +
                 ", childs=" + childs +
+                ", parentId=" + parentId +
                 '}';
     }
 }

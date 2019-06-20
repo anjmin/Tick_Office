@@ -12,11 +12,9 @@
 		<result column="name" property="name"></result>
 		<result column="flag" property="flag"></result>
 		<result column="headphoto" property="headphoto"></result>
-		<association property="role" resultMap="roleMap"></association>
-	</resultMap>
-	<!--嵌套对象，用来查询角色-->
-	<resultMap id="roleMap" type="role">
-		<result column="infos" property="info"></result>
+		<collection property="rolelist" ofType="role">
+			<result column="infos" property="info"></result>
+		</collection>
 	</resultMap>
 
 	<!--查找用户-->
@@ -49,7 +47,7 @@
 
 	<!--根据工号、状态，查找全部用户角色列表-->
 	<select id="findAllByNoAndFg" parameterType="map" resultMap="userMap">
-		select u.id,u.no,u.name,r.id rid,group_concat(r.info)infos,u.flag from t_user u
+		select u.id,u.no,u.name,group_concat(r.info)infos,u.flag from t_user u
 		inner join t_userrole ur
 		on ur.uid = u.id
 		inner join t_role r
@@ -72,5 +70,18 @@
 		on u.id = ur.uid
 		where u.id=#{id}
 	</delete>
+
+	<!--修改用户信息-->
+	<update id="updateUserById" parameterType="user">
+		update t_user
+		<set>
+			<if test="no != null and no !=''">
+				no = #{no}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+
 
 </mapper>

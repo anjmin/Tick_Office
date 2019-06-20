@@ -1,5 +1,9 @@
 package com.qfedu.service;
 
+import com.qfedu.pojo.Role;
+import com.qfedu.pojo.User;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,4 +15,7 @@ public interface UserService {
     Map<String,Object> findAllByNoAndFg(String no, Integer flag, Integer page, Integer limit);
 
     void deleteById(Integer id);
+
+    void updateUserById(User user, Integer id);
+
 }
