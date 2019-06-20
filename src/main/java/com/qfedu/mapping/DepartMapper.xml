@@ -18,7 +18,7 @@
         SELECT d.*,COUNT(did) AS dcount, s.did
         FROM t_depart d LEFT JOIN t_staff s
         ON d.id = s.did
-        GROUP BY did
+        GROUP BY id
     </select>
 
     <!--分页-->

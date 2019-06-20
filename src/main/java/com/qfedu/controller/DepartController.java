@@ -57,6 +57,7 @@ public class DepartController {
 
     // 添加部门
     @RequestMapping("/departadd.do")
+
     public String add(Depart dep){
         departService.addDep(dep);
         return "redirect:/departlist.html";
