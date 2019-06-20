@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qfedu.dao.ProcesDao">
+
+	<select id="selectAllInfo" parameterType="list" resultType="process">
+		select * from t_check
+	</select>
+	<!--计数-->
+	<select id="count" resultType="int">
+		select count(*) from t_check
+	</select>
+
+
+</mapper>
