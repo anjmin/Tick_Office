@@ -71,16 +71,7 @@
 		where u.id=#{id}
 	</delete>
 
-	<!--修改用户信息-->
-	<update id="updateUserById" parameterType="user">
-		update t_user
-		<set>
-			<if test="no != null and no !=''">
-				no = #{no}
-			</if>
-		</set>
-		where id = #{id}
-	</update>
+
 
 
 

@@ -15,15 +15,6 @@
         </collection>
     </resultMap>
 
-    <!--查询所有角色信息-->
-    <select id="findUserRoleAll"  resultMap="roleMap">
-        select u.id,u.no,r.info from t_role r
-        INNER JOIN t_userrole ur
-        on ur.rid = r.id
-        INNER JOIN t_user u
-        on ur.uid = u.id
-    </select>
-
     <select id="findRoleAll" resultMap="roleMap">
         select * from t_role
     </select>

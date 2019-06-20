@@ -3,7 +3,6 @@ package com.qfedu.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qfedu.dao.UserDao;
-import com.qfedu.pojo.Role;
 import com.qfedu.pojo.User;
 import com.qfedu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +44,6 @@ public class UserServiceImpl implements UserService {
         userDao.deleteById(id);
     }
 
-    @Override
-    public void updateUserById(User user, Integer id) {
-        userDao.updateUserById(user,id);
-    }
 
 
 }
