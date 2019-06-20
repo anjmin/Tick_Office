@@ -44,4 +44,12 @@
         values(#{title},#{icon},#{aurl},#{parentId})
     </insert>
 
+    <!--删除权限-->
+    <delete id="deleteAuthById" parameterType="Integer">
+        delete a,r from t_authority a
+        left join t_roleauthority r
+        on a.id = r.aid
+        where a.id = #{id}
+    </delete>
+
 </mapper>

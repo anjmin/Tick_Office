@@ -24,6 +24,4 @@ public interface UserDao {
     //删除用户角色
     void deleteById(Integer id);
 
-
-
 }
