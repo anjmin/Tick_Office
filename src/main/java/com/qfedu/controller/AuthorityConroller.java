@@ -8,6 +8,7 @@ import com.qfedu.vo.JsonBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -34,22 +35,22 @@ public class AuthorityConroller {
     //添加权限
     @RequestMapping("/authorityadd.do")
     @ResponseBody
-    public JsonBean addAuth(String title,String icon,String aurl,Integer pid){
+    public JsonBean addAuth(String title,String icon,String aurl,@RequestParam("parentId") Integer parentId){
         Authority auth = new Authority();
         auth.setTitle(title);
         auth.setIcon(icon);
         auth.setAurl(aurl);
-        auth.setParentId(pid);
+        auth.setParentId(parentId);
         System.out.println("页面表单提交的新增权限信息："+auth);
         authorityService.addAuth(auth);
         return new JsonBean(1,null);
     }
 
-    //添加权限前定义parentId
+    //如果新增权限时选择二级，pid值为-1，开启下拉框，同时重新给parentId赋值
     @RequestMapping("/authorityroot.do")
     @ResponseBody
-    public List<Authority> setParentId(Integer pid){
-        List<Authority> list = authorityService.changePid(pid);
+    public List<Authority> findAllAuthByAdd(){
+        List<Authority> list = authorityService.findAllAuthByAdd();
         return list;
     }
 

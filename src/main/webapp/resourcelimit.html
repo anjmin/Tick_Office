@@ -34,6 +34,7 @@
 		  var table = layui.table;
 		form=layui.form;
         form.on('radio(level)', function (data) {
+			alert(data.value);
             changePid(data.value);
         });
 		  //第一个实例
@@ -112,6 +113,7 @@
     function changePid(i) {
 		if(i==-1){
             $.get("authorityroot.do",null,function (arr) {
+				alert(arr);
 				for(i=0;i<arr.length;i++){
                     $("#spid").append("<option value=\""+arr[i].id+"\">"+arr[i].title+"</option>");
 				}
@@ -124,10 +126,13 @@
 		}
     }
     function setPid(obj) {
+		alert(obj.value());
         $("#pid").val(obj.value());
+
     }
 </script>
 </body>
+<!--新增模态框-->
 <div style="display: none;margin-top: 10px;width: 480px" id="dvlay">
 	<form id="fm1" class="layui-form " >
 		<div class="layui-form-item"  >
@@ -155,11 +160,11 @@
 				<input type="radio" name="pid" value="-1" lay-filter="level"   title="二级" >
 			</div>
 		</div>
-		<input type="hidden" name="parentId" id="pid">
+		<input type="hidden" id="pid">
 		<div class="layui-form-item" id="dvl1" style="display: none" >
 			<label class="layui-form-label">上级路径：</label>
 			<div class="layui-input-inline">
-				<select onselect="setPid(this)" id="spid" >
+				<select name="parentId"  onselect="setPid(this)" id="spid" >
 
 				</select>
 
