@@ -12,9 +12,11 @@
 		<result column="name" property="name"></result>
 		<result column="flag" property="flag"></result>
 		<result column="headphoto" property="headphoto"></result>
-		<collection property="rids" ofType="role">
-			<id column="rid" property="id"></id>
-			<result column="infos" property="info"></result>
+		<collection property="role" ofType="String">
+			<result column="info" property="role"></result>
+		</collection>
+		<collection property="rids" ofType="Integer">
+			<id  column="rid" property="rids"></id>
 		</collection>
 	</resultMap>
 
@@ -48,20 +50,19 @@
 
 	<!--根据工号、状态，查找全部用户角色列表-->
 	<select id="findAllByNoAndFg" parameterType="map" resultMap="userMap">
-		select u.id,u.no,u.name,group_concat(r.info)infos,u.flag from t_user u
-		inner join t_userrole ur
+		select u.id,u.no,u.name,r.id rid ,r.info info,u.flag from t_user u
+		LEFT JOIN t_userrole ur
 		on ur.uid = u.id
-		inner join t_role r
+		LEFT JOIN t_role r
 		on ur.rid = r.id
-		where 1=1
+		 <where>
 		<if test="no !=null and no !=''">
 			and u.no = #{no}
 		</if>
 		<if test="flag !=null and flag !=''">
 			and u.flag = #{flag}
 		</if>
-		GROUP BY u.id
-		ORDER BY r.info desc
+		</where>
 	</select>
 
 	<!--删除用户角色-->
@@ -71,5 +72,28 @@
 		on u.id = ur.uid
 		where u.id=#{id}
 	</delete>
+
+	<!--查找所有的角色-->
+	<select id="findAllRole" resultType="role">
+		select * from t_role
+	</select>
+
+	<!--根据id删除用户角色-->
+	<delete id="deleteUserRoleById" parameterType="Integer">
+		delete from t_userrole where uid=#{id}
+	</delete>
+
+	<!--修改插入角色-->
+	<insert id="insertUserRole" parameterType="map">
+		insert into t_userrole values
+		<foreach collection="rids" item="rids" index="index"  separator="," >
+			(#{id},#{rids})
+		</foreach>
+	</insert>
+
+	<!--查询所有的用户共几条用-->
+	<select id="findByAllT"  resultType="long">
+		select count(*) from t_user
+	</select>
 
 </mapper>
