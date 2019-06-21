@@ -31,9 +31,11 @@ public class ProcessSerciveImpl implements ProcessSercive {
         return list;
     }
 
+
     @Override
     public Map<String, Object> findByPage(Integer page, Integer limit) {
         PageHelper.startPage(page,limit);
+        Process process = new Process();
         List<Process> list = procesDao.selectAllInfo();
         System.out.println(list);
         //获取总记录数

@@ -15,4 +15,9 @@ public interface ProcesDao {
     public List<Process> findByIndexAndSize(@Param("index") Integer index, @Param("size") Integer size);
     // 获取总记录数
     public int count();
+    //添加
+
+    // 删除
+
+    // 查看
 }

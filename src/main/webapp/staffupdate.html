@@ -34,6 +34,7 @@
 			$("#f4").val(obj.phone);
 			$("#f5").val(obj.qq);
 			$("#f6").val(obj.createdate);
+			$("#f7").val(obj.no);
 
 		}
 	</script>
@@ -41,6 +42,13 @@
 <body>
 	<div class="layui-container">
 		<form class="layui-form" action="staffupdate.do" method="post">
+			<div class="layui-form-item">
+				<label class="layui-form-label">员工编号</label>
+				<div class="layui-input-block">
+					<input type="text" name="no" lay-verify="no" autocomplete="off"
+						   class="layui-input" id="f7" readonly="readonly">
+				</div>
+			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">员工姓名</label>
 				<div class="layui-input-block">
@@ -98,7 +106,7 @@
 				</button>
 				<input type="hidden" name="photo" id="p1">
  				 <div class="layui-input-block">
- 				 	<img alt="个人一寸照片"  id="img1" width="200px" height="300px">
+ 				 	<img alt="个人一寸照片"  id="img1" width="200px" height="200px">
  				 </div>
  			</div>
 			<div class="layui-form-item">
@@ -127,8 +135,8 @@
 							      //上传完毕回调
 							      console.log(obj);
 							      if(obj.code==1000){
-							    	  $("#p1").val(obj.msg);
-								      $("#img1")[0].src="/tickresource/"+obj.msg;
+							    	  $("#p1").val(obj.info);
+								      $("#img1")[0].src=obj.info;
 							      	  $("#btn1").attr("disabled",false);
 							      }else{
 							    	  $("#img1")[0].src="media/images/cw1.jpg";

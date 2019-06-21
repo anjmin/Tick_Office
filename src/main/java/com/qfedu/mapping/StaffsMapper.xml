@@ -57,10 +57,11 @@
 
 	<!--更新员工信息-->
 	<update id="updateStaff" parameterType="staff">
-		update t_staff set no=#{no},name=#{name},did=#{did},
+		update t_staff set name=#{name},did=#{did},
 		flag=#{flag},sex=#{sex},
 		email=#{email},qq=#{qq},phone=#{phone},
 		createdate=#{createdate},photo=#{photo}
+		where no=#{no}
 	</update>
 
 	<!--<select id="findDate"  resultType="staff">
