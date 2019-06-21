@@ -13,6 +13,7 @@ public class Process {
     private String type;
     //发起人
     private String startname;
+    //工号
     private String startno;
     //起始日期
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -22,7 +23,7 @@ public class Process {
     private Date enddate;
     //天数
     private Integer days;
-    //pid
+    //流程序号
     private String pid;
 
     public Integer getId() {

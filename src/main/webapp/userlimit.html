@@ -8,8 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="media/layui/css/layui.css" media="all">
-    <script type="text/javascript" src="media/js/jquery.min.js"></script>
-    <script type="text/javascript" src="media/js/jquery-1.12.2.min.js"></script>
+    <script src="media/js/jquery.min.js"></script>
 </head>
 <body>
 
@@ -49,8 +48,8 @@
     <div class="layui-col-md11">
         <table id="tbdata" lay-filter="tbop"></table>
         <script type="text/html" id="barop">
-            <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
     </div>
 </div>
@@ -61,38 +60,24 @@
 <script>
     var tableIns;
     var form1;
-    layui.use(['layer','table','form'], function () {
-        var layer = layui.layer;
+    layui.use(['table','form'], function () {
         var table = layui.table;
-        var form1=layui.form;
+        form1=layui.form;
         //第一个实例
         tableIns = table.render({
             elem: '#tbdata'
             , url: 'userall.do' //数据接口
-            , page: {layout:["prve","page","next","skip","count","limit"]
-            ,groups:1   //只显示1个连续页码
-            ,first: false   //不显示首页
-            ,last:false    //不显示尾页
-            ,limit:5
-            ,limits:[5,10,20]
-            }//开启分页
+            , page: true //开启分页
             , cols: [[ //表头
                 {field: 'id', title: '序号', sort: true, fixed: 'left'}
                 , {field: 'no', title: '工号'}
                 , {field: 'name', title: '姓名', sort: true}
-                , {
-                    field: 'rids', title: '职位',templet: function (obj){
-                        var infos;
-                        for(var i =0;i<obj.rids.length;i++){
-                            infos = obj.rids[i].info;
-                            return infos;
-                        }
-                    }}
+                , {field: 'role', title: '职位', sort: true}
                 , {
                     field: 'flag', title: '有/无效', templet: function (obj) {
                         var r;
                         switch (obj.flag) {
-                            //有效
+                                //有效
                             case 1:
                                 r = "<span style='color: #1E9FFF'>有效</span>";
                                 break;
@@ -147,9 +132,11 @@
         $.ajax({
             url: "userroleedit.do",
             data: $("#fm1").serialize(),
+            dataType:"json",
             success: function (obj) {
                 if (obj.code == 1) {
                     layer.msg("编辑权限成功");
+                    window.location.herf="userlimit.html";
                 } else {
                     layer.msg("编辑权限失败");
                 }
@@ -159,21 +146,16 @@
     }
 
     function loadRoles(user) {
-        alert(user.rids[0].id);
-        var rids=[];
-        for(var i =0 ; i<user.rids.length;i++){
-            rids[i] = user.rids[i].id;
-        }
         $("#uid").val(user.id);
         $.get("roleall.do", null, function (arr) {
             $("#dv1").html("");
             for (i = 0; i < arr.length; i++) {
-                if(rids.indexOf(arr[i].id)>-1){
+                if(user.rids.indexOf(arr[i].id)>-1){
                     $("#dv1").append("<input type=\"checkbox\" name=\"rids\" value='" + arr[i].id + "' title=\"" + arr[i].info + "\" checked>");
                 }else{
                     $("#dv1").append("<input type=\"checkbox\" name=\"rids\" value='" + arr[i].id + "' title=\"" + arr[i].info + "\">");
                 }
-               }
+            }
             form1.render();
             layer.open({
                 area: ['500px', '300px'],
@@ -188,6 +170,7 @@
                         success: function (obj) {
                             if (obj.code == 1) {
                                 layer.msg("编辑权限成功");
+                                window.location.herf="userlimit.html";
                                 searchData();
                             } else {
                                 layer.msg("编辑权限失败");

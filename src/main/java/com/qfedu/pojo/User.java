@@ -21,15 +21,11 @@ public class User {
     private  String headphoto;
 
     //用户角色
-    private List<Role> rids;
+    private List<String> role;
+    //用户角色ID
+    private List<Integer> rids;
 
-    public List<Role> getRids() {
-        return rids;
-    }
 
-    public void setRids(List<Role> rids) {
-        this.rids = rids;
-    }
 
     public Integer getId() {
         return id;
@@ -79,6 +75,23 @@ public class User {
         this.headphoto = headphoto;
     }
 
+    public List<String> getRole() {
+        return role;
+    }
+
+    public void setRole(List<String> role) {
+        this.role = role;
+    }
+
+    public List<Integer> getRids() {
+        return rids;
+    }
+
+    public void setRids(List<Integer> rids) {
+        this.rids = rids;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -88,6 +101,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", flag=" + flag +
                 ", headphoto='" + headphoto + '\'' +
+                ", role=" + role +
                 ", rids=" + rids +
                 '}';
     }

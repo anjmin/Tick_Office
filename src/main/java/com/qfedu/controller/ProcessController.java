@@ -19,7 +19,7 @@ public class ProcessController {
     //展示员工所有信息
     @RequestMapping("/list.do")
     @ResponseBody
-    public JsonBean list(){
+    public JsonBean list(String name){
         List<Process> list = processSercive.selectAllInfo();
         return  new JsonBean(1,null);
     }

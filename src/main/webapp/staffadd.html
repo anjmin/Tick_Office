@@ -74,7 +74,7 @@
 				</button>
 				<input type="hidden" name="photo" id="p1">
  				 <div class="layui-input-block">
- 				 	<img alt="个人一寸照片"  id="img1" width="200px" height="300px">
+ 				 	<img alt="个人一寸照片"  id="img1" width="200px" height="200px">
  				 </div>
  			</div>
 			<div class="layui-form-item">
@@ -102,9 +102,9 @@
 							    ,done: function(obj){
 							      //上传完毕回调
 							      console.log(obj);
-							      if(obj.code==1){
-							    	  $("#p1").val(obj.msg);
-								      $("#img1")[0].src="/tickresource/"+obj.msg;
+							      if(obj.code==1000){
+							    	  $("#p1").val(obj.info);
+								      $("#img1")[0].src=obj.info;
 							      	  $("#btn1").attr("disabled",false);
 							      }else{
 							    	  $("#img1")[0].src="media/images/cw1.jpg";

@@ -20,6 +20,23 @@
             height: 98%;
         }
     </style>
+    <style>
+
+
+
+        .big-page .layui-layout-admin .layui-side{top:60px;width:0px;overflow-x:hidden}
+
+        /* .big-page{background: rebeccapurple;}*/
+        /* .big-page.layui-body{left: 0px;} */
+    </style>
+
+    <script>
+        function flexible() {
+
+            $("body").toggleClass("big-page");
+            //  return false;
+        }
+    </script>
 </head>
 
 <body>
