@@ -15,6 +15,9 @@ public interface AuthorityDao {
     //查找所有权限
     List<Authority> findAllAuth();
 
+    //新增时查询所有
+    List<Authority> findAllAuthByAdd();
+
     //新增权限
     void insertAuth(Authority auth);
 

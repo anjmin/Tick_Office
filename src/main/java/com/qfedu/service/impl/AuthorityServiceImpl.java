@@ -38,7 +38,7 @@ public class AuthorityServiceImpl implements AuthorityService {
         //总页数
         int pages = ((Page)list).getPages();
         map.put("code",0);
-        map.put("msg","");// 总记录数
+        map.put("msg","");
         map.put("count", total);
         map.put("data", list);
 
@@ -54,8 +54,8 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     //根据页面传过来的pid设置parentId
     @Override
-    public List<Authority> changePid(Integer pid) {
-        return authorityDao.findAllAuth();
+    public List<Authority> findAllAuthByAdd() {
+        return authorityDao.findAllAuthByAdd();
     }
 
     @Override

@@ -17,8 +17,8 @@ public interface AuthorityService {
     //添加权限
     void addAuth(Authority auth);
 
-    //根据页面传过来的pid设置parentId
-    List<Authority> changePid(Integer pid);
+    //当pid为-1时进入这个方法
+    List<Authority> findAllAuthByAdd();
 
     //删除权限
     void deleteAuthById(Integer id);
