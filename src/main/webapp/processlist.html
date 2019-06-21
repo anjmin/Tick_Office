@@ -60,7 +60,7 @@
 		                    type: "POST",
 		                    data:"id="+data.id+"&pid="+data.pid,
 		                    success: function(data){
-		                        if(data.code==1000){
+		                        if(data.code==1){
 		                            obj.del();//删除表格中的对应行数据
 		                            layer.close(index);
 		                            layer.msg("成功", {icon: 6});

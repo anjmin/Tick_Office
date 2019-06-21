@@ -23,5 +23,10 @@ public interface UserDao {
 
     //删除用户角色
     void deleteById(Integer id);
+    //领导
+    List<User> selectM();
 
+    String selectUserName(String startno);
+
+    Integer findUserId(String startno);
 }

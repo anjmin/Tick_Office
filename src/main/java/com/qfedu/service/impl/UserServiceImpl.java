@@ -44,5 +44,21 @@ public class UserServiceImpl implements UserService {
         userDao.deleteById(id);
     }
 
+    @Override
+    public List<User> selectM() {
+        List<User> list = userDao.selectM();
+        return list;
+    }
+
+    @Override
+    public String selectUserName(String startno) {
+        return userDao.selectUserName(startno);
+    }
+
+    @Override
+    public Integer findUserId(String startno) {
+        return userDao.findUserId(startno);
+    }
+
 
 }

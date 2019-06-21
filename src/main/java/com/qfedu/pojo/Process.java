@@ -24,7 +24,11 @@ public class Process {
     //天数
     private Integer days;
     //流程序号
-    private String pid;
+    private Integer pid;
+    //结果
+    private Integer flag;
+    //审批人的Id
+    private  Integer ManageId;
 
     public Integer getId() {
         return id;
@@ -90,11 +94,27 @@ public class Process {
         this.days = days;
     }
 
-    public String getPid() {
+    public Integer getPid() {
         return pid;
     }
 
-    public void setPid(String pid) {
+    public void setPid(Integer pid) {
         this.pid = pid;
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
+    }
+
+    public Integer getManageId() {
+        return ManageId;
+    }
+
+    public void setManageId(Integer manageId) {
+        ManageId = manageId;
     }
 }
