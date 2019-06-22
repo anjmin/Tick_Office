@@ -18,18 +18,7 @@
 			<div class="layui-form-item layui-form-text">
 				<label class="layui-form-label">角色名称：</label>
 				<div class="layui-input-block">
-					<input type="text" id="no" class="layui-input" placeholder="角色名称">
-				</div>
-			</div>
-		</div>
-		<div class="layui-col-xs3" style="margin-right: 20px">
-			<div class="layui-form-item layui-form-text">
-				<label class="layui-form-label">用户：</label>
-				<div class="layui-input-block">
-					<select class="layui-input" id="fg">
-						<option value="1">有效</option>
-						<option value="2">无效</option>
-					</select>
+					<input type="text" id="info" class="layui-input" placeholder="角色">
 				</div>
 			</div>
 		</div>
@@ -48,7 +37,7 @@
 	<div class="layui-col-md11">
 		<table id="tbdata" lay-filter="tbop"></table>
 		<script type="text/html" id="barop">
-			<a class="layui-btn layui-btn-mini" lay-event="edit">查看权限</a>
+			<a class="layui-btn layui-btn-mini" lay-event="detail">查看权限</a>
 			<a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
 			<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
 		</script>
@@ -67,7 +56,7 @@
         tableIns = table.render({
             elem: '#tbdata'
             , url: 'rolepage.do' //数据接口
-            , page: false //关闭分页
+            , page: false/开启分页
             , cols: [[ //表头
                 {field: 'id', title: '序号', sort: true, fixed: 'left'}
                 , {field: 'name', title: '角色名称'}
@@ -97,6 +86,8 @@
                 });
             } else if (obj.event === 'edit') {//编辑 修改
                 loadRoles(data);
+            }else {
+                layer.msg(JSON.stringify(data));
             }
         });
     });

@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface RoleDao {
 
-    List<Role> findRoleAll();
 
+    List<Role> findAllByName(String info);
 }

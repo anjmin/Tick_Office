@@ -7,11 +7,22 @@
         <id column="id" property="id"></id>
         <result column="info" property="info"></result>
         <result column="name" property="name"></result>
+
     </resultMap>
 
-    <select id="findRoleAll" resultType="role">
+    <!--<select id="findRoleAll" resultType="role">
         select * from t_role
-    </select>
+    </select>-->
 
+
+    <!--根据条件查询所有-->
+    <select id="findAllByName" parameterType="String" resultMap="roleMap">
+        select * from t_role
+        <where>
+            <if test="info !=null and info !=''">
+                and info = #{info}
+            </if>
+        </where>
+    </select>
 
 </mapper>

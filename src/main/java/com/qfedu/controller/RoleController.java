@@ -17,12 +17,13 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-
-    //查看所有角色
-    @RequestMapping("/rolepage.do")
+    //查看所有角色、根据关键字查询
     @ResponseBody
-    public Map<String, Object> findRoleAll(){
-        Map<String, Object> map = roleService.findRoleAll();
+    @RequestMapping("/rolepage.do")
+    public Map<String, Object> rolepage(String info) {
+        System.out.println(info);
+        Map<String, Object> map = roleService.rolepage(info);
+        System.out.println("返回页面的json数据：" + map);
         return map;
     }
 

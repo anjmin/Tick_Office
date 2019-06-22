@@ -84,6 +84,7 @@
 
 	<select id="findUserId" parameterType="String" resultType="Integer">
 		select id from t_user where no=#{startno}
+	</select>
 
 	<!--查找所有的角色-->
 	<select id="findAllRole" resultType="role">
@@ -106,7 +107,6 @@
 	<!--查询所有的用户共几条用-->
 	<select id="findByAllT"  resultType="long">
 		select count(*) from t_user
-
 	</select>
 
 </mapper>

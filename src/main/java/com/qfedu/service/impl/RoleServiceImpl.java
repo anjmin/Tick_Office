@@ -19,17 +19,33 @@ public class RoleServiceImpl implements RoleService {
     @Autowired(required = false)
     private RoleDao roleDao;
 
-
     @Override
-    public Map<String, Object> findRoleAll() {
-        List<Role> list = roleDao.findRoleAll();
+    public Map<String, Object> rolepage(String info) {
+        List<Role> list = roleDao.findAllByName(info);
         Map<String, Object> map = new HashMap<>();
-
-
-        map.put("code",0);
-        map.put("msg","");
+        map.put("code", 0);
+        map.put("msg", "");
         map.put("data", list);
         return map;
     }
+
+
+
+   /* @Override
+    public Map<String, Object> rolepage(String info, Integer page, Integer limit) {
+        PageHelper.startPage(page,limit);
+        List<Role> list = roleDao.findAllByName(info);
+        //获取总记录数
+        long total = ((Page) list).getTotal();
+        // 获取总页数
+        int pages = ((Page) list).getPages();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 0);
+        map.put("msg", "");
+        map.put("count", total);
+        map.put("data", list);
+        return map;
+    }*/
 
 }

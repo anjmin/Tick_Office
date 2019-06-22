@@ -7,7 +7,6 @@ import java.util.Map;
  */
 public interface RoleService {
 
-    Map<String,Object> findRoleAll();
 
-
+    Map<String,Object> rolepage(String info);
 }
