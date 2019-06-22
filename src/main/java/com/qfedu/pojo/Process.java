@@ -117,4 +117,21 @@ public class Process {
     public void setManageId(Integer manageId) {
         ManageId = manageId;
     }
+
+    @Override
+    public String toString() {
+        return "Process{" +
+                "id=" + id +
+                ", info='" + info + '\'' +
+                ", type='" + type + '\'' +
+                ", startname='" + startname + '\'' +
+                ", startno='" + startno + '\'' +
+                ", startdate=" + startdate +
+                ", enddate=" + enddate +
+                ", days=" + days +
+                ", pid=" + pid +
+                ", flag=" + flag +
+                ", ManageId=" + ManageId +
+                '}';
+    }
 }

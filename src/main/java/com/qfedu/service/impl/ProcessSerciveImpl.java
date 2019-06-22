@@ -89,4 +89,16 @@ public class ProcessSerciveImpl implements ProcessSercive {
 
         return map;
     }
+
+    @Override
+    public Map<String, Object> selectByPid2(Integer pid) {
+        List<Process> list = procesDao.selectByPid2(pid);
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 0);
+        map.put("msg", "");
+        map.put("data",list);
+        return map;
+    }
+
+
 }

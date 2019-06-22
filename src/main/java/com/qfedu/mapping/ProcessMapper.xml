@@ -35,6 +35,9 @@
         select * from t_check where ManageId=#{ManageId} and flag=1
     </select>
 
+	<select id="selectByPid2" parameterType="Integer" resultType="process">
+		select * from t_check where pid=#{pid}
+	</select>
 
 
 </mapper>

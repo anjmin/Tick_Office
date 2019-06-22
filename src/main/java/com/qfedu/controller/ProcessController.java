@@ -68,12 +68,21 @@ public class ProcessController {
     @RequestMapping("processecharts.do")
     public List<Process> processecharts(String  pid,Process process){
         List<Process> byPid = processSercive.selectByPid(pid);
-
         process.getId();
         process.getStartdate();
         return  byPid;
 
     }
+
+   /* //统计
+    @ResponseBody
+    @RequestMapping("processecharts.do")
+    public Map<String, Object> processecharts(Integer  pid){
+        Map<String, Object> map = processSercive.selectByPid2(pid);
+        System.out.println("echarts要的数据："+map+"eeeeeeeeeeeeeeeeeeeee");
+        return  map;
+
+    }*/
 
     @ResponseBody
     @RequestMapping("/processupdate.do")

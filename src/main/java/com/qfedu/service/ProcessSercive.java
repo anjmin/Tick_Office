@@ -22,5 +22,5 @@ public interface ProcessSercive {
     Map<String, Object> processnolist(Integer page, Integer limit, Integer ManageId);
 
 
-
+    Map<String,Object> selectByPid2(Integer pid);
 }

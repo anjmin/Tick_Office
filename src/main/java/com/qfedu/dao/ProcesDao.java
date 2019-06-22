@@ -26,4 +26,6 @@ public interface ProcesDao {
     void processupdate(Map map);
 
     List<Process> processnolist(Integer manageId);
+
+    List<Process> selectByPid2(Integer pid);
 }
