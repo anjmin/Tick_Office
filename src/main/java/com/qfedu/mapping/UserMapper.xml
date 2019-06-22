@@ -73,6 +73,19 @@
 		where u.id=#{id}
 	</delete>
 
+
+	<select id="selectM"  resultMap="userMap">
+		SELECT id,name from t_user where flag=1
+	</select>
+
+	<select id="selectUserName" parameterType="String" resultType="String">
+		select name from t_user where no=#{no}
+	</select>
+
+	<select id="findUserId" parameterType="String" resultType="Integer">
+		select id from t_user where no=#{startno}
+	</select>
+
 	<!--查找所有的角色-->
 	<select id="findAllRole" resultType="role">
 		select * from t_role

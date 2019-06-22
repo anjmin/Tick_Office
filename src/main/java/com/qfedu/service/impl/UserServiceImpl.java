@@ -45,6 +45,24 @@ public class UserServiceImpl implements UserService {
         userDao.deleteById(id);
     }
 
+
+    @Override
+    public List<User> selectM() {
+        List<User> list = userDao.selectM();
+        return list;
+    }
+
+    @Override
+    public String selectUserName(String startno) {
+        return userDao.selectUserName(startno);
+    }
+
+    @Override
+    public Integer findUserId(String startno) {
+        return userDao.findUserId(startno);
+    }
+
+
     //查找用户角色
     @Override
     public List<Role> findAllRole() {
@@ -54,8 +72,10 @@ public class UserServiceImpl implements UserService {
     //查找修改用户角色
     @Override
     public void userRoleEdit(Integer id, Integer[] rids) {
-        userDao.deleteUserRoleById(id);
-        userDao.insertUserRole(id,rids);
-    }
 
+        userDao.deleteUserRoleById(id);
+        if(rids!=null){
+            userDao.insertUserRole(id,rids);
+        }
+    }
 }

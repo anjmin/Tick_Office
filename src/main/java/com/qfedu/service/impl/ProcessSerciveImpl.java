@@ -14,29 +14,24 @@ import java.util.Map;
 
 @Service
 public class ProcessSerciveImpl implements ProcessSercive {
-    @Autowired
+    @Autowired(required = false)
     private ProcesDao procesDao;
 
 
     @Override
-    public List<Process> selectAllInfo() {
-        //调用该方法进行分页查询
-        //第一个参数：页码；第二个参数：每页显示的记录数
-        //startPage语句后，一定要紧跟着查询的相关方法
+    public List<Process> selectAllInfo(String startno) {
         PageHelper.startPage(1,5);
-        List<Process> list = procesDao.selectAllInfo();
+        List<Process> pro = procesDao.selectAllInfo(startno);
         //获取总记录数 强转
-        long total = ((Page) list).getTotal();
+        long total = ((Page) pro).getTotal();
 
-        return list;
+        return pro;
     }
 
-
     @Override
-    public Map<String, Object> findByPage(Integer page, Integer limit) {
+    public Map<String, Object> findByPage(Integer page, Integer limit,String startno) {
         PageHelper.startPage(page,limit);
-        Process process = new Process();
-        List<Process> list = procesDao.selectAllInfo();
+        List<Process> list = procesDao.selectAllInfo(startno);
         System.out.println(list);
         //获取总记录数
         long total = ((Page) list).getTotal();
@@ -51,4 +46,59 @@ public class ProcessSerciveImpl implements ProcessSercive {
 
         return map;
     }
+
+    @Override
+    public void Undo(Integer id) {
+        procesDao.Undo(id);
+
+    }
+
+    @Override
+    public void addInfo(Process pro) {
+        procesDao.addInfo(pro);
+
+    }
+
+    @Override
+    public List<Process> selectByPid(String  pid) {
+        List<Process> list = procesDao.selectByPid(pid);
+        return list;
+    }
+
+    @Override
+    public Map<String, Object> processupdate(Map map) {
+        procesDao.processupdate(map);
+        Map<String,Object> mapPro=new HashMap<>();
+        mapPro.put("code",1);
+        return mapPro;
+    }
+
+    @Override
+    public Map<String, Object> processnolist(Integer page, Integer limit, Integer ManageId) {
+        PageHelper.startPage(page, limit);
+        List<Process> list = procesDao.processnolist(ManageId);
+        // 获取总记录数
+        long total = ((Page) list).getTotal();
+
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("code",0);
+        map.put("msg","");
+        map.put("count",total);
+        map.put("data",list);
+
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> selectByPid2(Integer pid) {
+        List<Process> list = procesDao.selectByPid2(pid);
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 0);
+        map.put("msg", "");
+        map.put("data",list);
+        return map;
+    }
+
+
 }

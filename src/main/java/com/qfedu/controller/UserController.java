@@ -3,6 +3,7 @@ package com.qfedu.controller;
 
 import com.qfedu.pojo.Authority;
 import com.qfedu.pojo.Role;
+import com.qfedu.pojo.User;
 import com.qfedu.service.AuthorityService;
 import com.qfedu.service.UserService;
 import com.qfedu.utils.GetIpUtils;
@@ -75,6 +76,7 @@ public class UserController {
         userService.deleteById(id);
         return new JsonBean(1, null);
     }
+
     //查询用户角色信息修改
     @RequestMapping("/roleall.do")
     @ResponseBody
@@ -90,4 +92,14 @@ public class UserController {
         userService.userRoleEdit(id,rids);
         return new JsonBean(1, null);
     }
+    @RequestMapping("/manage.do")
+    @ResponseBody
+    public List<User> selectm(){
+        List<User> users = userService.selectM();
+        System.out.println(users+"11111111111111111111");
+        return users;
+    }
+
+
+
 }
