@@ -40,7 +40,6 @@
         return null;
     }
 	$.get("processecharts.do","pid="+getData(),function (obj) {
-        alert(obj.startdate);
 		init(obj);
     })
 	function init(obj) {

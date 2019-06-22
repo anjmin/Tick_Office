@@ -10,38 +10,47 @@
     <link rel="stylesheet" href="media/layui/css/layui.css" media="all">
     <script type="text/javascript" src="media/js/jquery.min.js"></script>
 
+    <script src="media/layui/layui.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
     <script type="text/javascript">
-        $(function () {
-            var json=getData();
-            var obj=JSON.parse(decodeURI(json));
-            showData(obj);
-        })
+        var form;
+        var layer;
+        layui.use([ 'form', 'laydate' ],
+                function() {
+                     form = layui.form, layer = layui.layer, laydate = layui.laydate;
 
-        function getData() {
-            var url=window.location.search;
-            index=url.indexOf("?");
-            if(index>-1){
-                var str = url.substr(index+1);
-                if(str.indexOf('=')){
-                    return str.split('=')[1];
+                });
+        $(function(){
+            showUserInfo();
+        })
+        function showUserInfo() {
+            $.ajax({
+            type:"get",
+            url:"userInfo.do",
+            dataType:"json",
+            success:function(data){
+                if(data.code==1){
+                    var infos=data.info;
+                    $(infos).each(function() {
+                        $("#f1").val(this.no);
+                        $("#f2").val(this.name);
+                        if (this.flag == 1) {
+                            $("#f3").val('有效');
+                        } else {
+                            $("#f3").val('无效');
+                        }
+
+                        $("#f4").val(this.role);
+                    })
                 }
             }
-            return null;
-        }
-        function showData(obj) {
-            $("#f1").val(obj.no);
-            $("#f2").val(obj.name);
-            $("#f3").val(obj.password);
-            $("#f4").val(obj.flag);
-            $("#f5").val(obj.rolelist);
-
-
+            })
         }
     </script>
 </head>
 <body>
 <div class="layui-container" style="margin-top: 5px">
-    <form class="layui-form layui-form-pane"  method="post" >
+    <form class="layui-form layui-form-pane"  method="get" >
         <div class="layui-form-item">
 
             <label class="layui-form-label">账号</label>
@@ -62,40 +71,23 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-block">
-                <input type="password" name="password" class="layui-input" readonly="readonly"
-                       id="f3">
-            </div>
-        </div>
-        <div class="layui-form-item">
-        <label class="layui-form-label">状态</label>
-        <div class="layui-input-inline">
-            <input type="" name="flag" class="layui-input" readonly="readonly"
-                   id="f4">
-        </div>
-    </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">职位</label>
+            <label class="layui-form-label">状态</label>
             <div class="layui-input-inline">
-                <input type="text" name="rolelist" class="layui-input" readonly="readonly"
-                       id="f5">
+                <input type="text" name="flag" class="layui-input" readonly="readonly"
+                   id="f3">
             </div>
         </div>
 
-
+        <div class="layui-form-item" pane>
+                <label class="layui-form-label">职位</label>
+                <div class="layui-input-inline" id="dv1">
+                    <input type="text" name="role" class="layui-input" readonly="readonly"
+                           id="f4" >
+                </div>
+        </div>
 
     </form>
 </div>
-<script src="media/layui/layui.js"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-    layui.use([ 'form', 'laydate' ],
-        function() {
-            var form = layui.form, layer = layui.layer, laydate = layui.laydate;
 
-        });
-</script>
 </body>
 </html>

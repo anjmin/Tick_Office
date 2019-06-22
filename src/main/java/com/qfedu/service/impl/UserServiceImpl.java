@@ -78,4 +78,12 @@ public class UserServiceImpl implements UserService {
             userDao.insertUserRole(id,rids);
         }
     }
+
+    //查询登录用户信息
+    @Override
+    public List<User> findUserInfoByNo(String no) {
+        List<User> list = userDao.findUserInfoByNo(no);
+
+        return list;
+    }
 }

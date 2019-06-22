@@ -33,6 +33,6 @@ public interface UserService {
     //修改用户角色
     void userRoleEdit(Integer id, Integer[] rids);
 
-
-
+    //查询登录用户信息
+    List<User> findUserInfoByNo(String no);
 }

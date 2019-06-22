@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
+import static org.apache.shiro.web.filter.mgt.DefaultFilter.user;
+
 @Controller
 public class UserController {
 
@@ -100,6 +102,15 @@ public class UserController {
         return users;
     }
 
-
+    //查询登录用户信息
+    @RequestMapping("/userInfo.do")
+    @ResponseBody
+    public JsonBean showUserInfo(){
+        String no = (String) SecurityUtils.getSubject().getPrincipal();
+        System.out.println("查询登录用户信息拿到的登录名"+no);
+        List<User> list = userService.findUserInfoByNo(no);
+        System.out.println("11112222333"+list);
+        return new JsonBean(1,list);
+    }
 
 }

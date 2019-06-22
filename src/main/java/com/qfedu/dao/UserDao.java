@@ -43,4 +43,6 @@ public interface UserDao {
 
     long findByAllT();
 
+    //查询登录用户信息
+    List<User> findUserInfoByNo(String no);
 }

@@ -109,4 +109,15 @@
 		select count(*) from t_user
 	</select>
 
+	<!--查询登录用户信息-->
+	<select id="findUserInfoByNo" parameterType="String" resultMap="userMap">
+		select u.no,u.name,u.flag,r.id rid,group_concat(r.info)info from t_user u
+		INNER JOIN t_userrole ur
+		on u.id = ur.uid
+		INNER JOIN t_role r
+		on r.id = ur.rid
+		where u.no=#{no}
+		group by u.id
+	</select>
+
 </mapper>
