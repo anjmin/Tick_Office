@@ -72,9 +72,10 @@ public class UserServiceImpl implements UserService {
     //查找修改用户角色
     @Override
     public void userRoleEdit(Integer id, Integer[] rids) {
+
         userDao.deleteUserRoleById(id);
-        userDao.insertUserRole(id,rids);
+        if(rids!=null){
+            userDao.insertUserRole(id,rids);
+        }
     }
-
-
 }

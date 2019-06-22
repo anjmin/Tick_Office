@@ -85,7 +85,13 @@ public class UserController {
         return roleList;
     }
 
-
+    //修改用户角色
+    @RequestMapping("/userroleedit.do")
+    @ResponseBody
+    public JsonBean userRoleEdit(Integer id,Integer[] rids){
+        userService.userRoleEdit(id,rids);
+        return new JsonBean(1, null);
+    }
     @RequestMapping("/manage.do")
     @ResponseBody
     public List<User> selectm(){

@@ -8,21 +8,48 @@
         <result column="info" property="info"></result>
         <result column="name" property="name"></result>
 
+        <collection property="aids" ofType="Integer">
+        <constructor>
+            <arg column="aid"></arg>
+        </constructor>
+    </collection>
+        <collection property="titles" ofType="String">
+            <constructor>
+                <arg column="title"></arg>
+            </constructor>
+        </collection>
     </resultMap>
 
-    <!--<select id="findRoleAll" resultType="role">
-        select * from t_role
-    </select>-->
 
 
     <!--根据条件查询所有-->
-    <select id="findAllByName" parameterType="String" resultMap="roleMap">
-        select * from t_role
+    <select id="findAllByName" parameterType="java.lang.String" resultMap="roleMap">
+        select r.*,ra.aid,a.title from t_role r left join t_roleauthority ra on r.id = ra.rid left join t_authority a on ra.aid = a.id
         <where>
             <if test="info !=null and info !=''">
-                and info = #{info}
+                 info = #{info}
             </if>
         </where>
     </select>
 
+
+    <!--根据id删除用户角色-->
+    <delete id="deleteById" parameterType="Integer">
+        delete from t_role where id=#{id}
+    </delete>
+
+
+
+    <!--根据id删除用户角色-->
+    <delete id="deleteRoleAById" parameterType="Integer">
+        delete from t_roleauthority where rid = #{id}
+    </delete>
+
+    <!--修改插入角色-->
+    <insert id="insertRoleA" parameterType="map">
+        insert into t_roleauthority values
+        <foreach collection="aids" item="aids" index="index"  separator="," >
+            (#{id},#{aids})
+        </foreach>
+    </insert>
 </mapper>

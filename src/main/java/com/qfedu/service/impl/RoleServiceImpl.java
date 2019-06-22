@@ -1,6 +1,8 @@
 package com.qfedu.service.impl;
 
+import com.qfedu.dao.AuthorityDao;
 import com.qfedu.dao.RoleDao;
+import com.qfedu.pojo.Authority;
 import com.qfedu.pojo.Role;
 import com.qfedu.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,34 +20,40 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired(required = false)
     private RoleDao roleDao;
+    @Autowired(required = false)
+    private AuthorityDao authorityDao;
 
+    //根据条件查询展现所有
     @Override
     public Map<String, Object> rolepage(String info) {
+
         List<Role> list = roleDao.findAllByName(info);
         Map<String, Object> map = new HashMap<>();
         map.put("code", 0);
         map.put("msg", "");
-        map.put("data", list);
+        map.put("data",list);
         return map;
     }
 
+    //删除
+    @Override
+    public void deleteById(Integer id) {
+        roleDao.deleteById(id);
+    }
 
+    //查看所有的权限
+    @Override
+    public List<Authority> findAllAuthority() {
+        return authorityDao.findAllAuth();
+    }
 
-   /* @Override
-    public Map<String, Object> rolepage(String info, Integer page, Integer limit) {
-        PageHelper.startPage(page,limit);
-        List<Role> list = roleDao.findAllByName(info);
-        //获取总记录数
-        long total = ((Page) list).getTotal();
-        // 获取总页数
-        int pages = ((Page) list).getPages();
+    //修改角色权限信息
+    @Override
+    public void userRoleEdit(Integer id, Integer[] aids) {
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("code", 0);
-        map.put("msg", "");
-        map.put("count", total);
-        map.put("data", list);
-        return map;
-    }*/
-
+        roleDao.deleteRoleAById(id);
+        if(aids!=null){
+            roleDao.insertRoleA(id,aids);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.qfedu.dao;
 
 import com.qfedu.pojo.Role;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,6 +10,13 @@ import java.util.List;
  */
 public interface RoleDao {
 
+    //根据条件查询
+    List<Role> findAllByName(@Param("info") String info);
 
-    List<Role> findAllByName(String info);
+    //删除
+    void deleteById(Integer id);
+
+    void deleteRoleAById(Integer id);
+
+    void insertRoleA(@Param("id") Integer id, @Param("aids") Integer[] aids);
 }
