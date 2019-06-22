@@ -3,6 +3,7 @@ package com.qfedu.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qfedu.dao.AuthorityDao;
+
 import com.qfedu.pojo.Authority;
 import com.qfedu.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.Map;
 public class AuthorityServiceImpl implements AuthorityService {
     @Autowired(required = false)
     private AuthorityDao authorityDao;
+
 
     @Override
     public List<Authority> findUserMenuByNo(String no) {
@@ -49,6 +51,7 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     public void addAuth(Authority auth) {
         authorityDao.insertAuth(auth);
+
     }
 
 
@@ -58,8 +61,15 @@ public class AuthorityServiceImpl implements AuthorityService {
         return authorityDao.findAllAuthByAdd();
     }
 
+    //删除权限
     @Override
     public void deleteAuthById(Integer id) {
         authorityDao.deleteAuthById(id);
+    }
+
+    //修改权限
+    @Override
+    public void updateAuth(Authority auth) {
+        authorityDao.updateAuth(auth);
     }
 }

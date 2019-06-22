@@ -23,4 +23,7 @@ public interface AuthorityDao {
 
     //删除权限
     void deleteAuthById(Integer id);
+
+    //修改权限
+    void updateAuth(Authority auth);
 }

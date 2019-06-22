@@ -61,4 +61,13 @@ public class AuthorityConroller {
         authorityService.deleteAuthById(id);
         return new JsonBean(1,null);
     }
+
+    //修改权限
+    @RequestMapping("/authorityupdate.do")
+    @ResponseBody
+    public JsonBean update(Authority auth){
+        System.out.println("为什么拿不到id的值？"+auth);
+        authorityService.updateAuth(auth);
+        return new JsonBean(1,null);
+    }
 }

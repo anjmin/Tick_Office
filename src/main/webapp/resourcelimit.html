@@ -34,7 +34,6 @@
 		  var table = layui.table;
 		form=layui.form;
         form.on('radio(level)', function (data) {
-			alert(data.value);
             changePid(data.value);
         });
 		  //第一个实例
@@ -78,12 +77,45 @@
 		                });
 		            });
 		        } else if(obj.event === 'edit'){//编辑 修改
-		        	//get传递参数有中文，必须编码
-		        	//JSON.stringify 将对象转换为字符串
-		           location.href="courseupdate.html?d="+ encodeURI(JSON.stringify(data));
+					loadAuth(data);
 		        }
 		});
 	});
+
+		//	修改权限方法
+		function loadAuth(auth) {
+			$("#id").val(auth.id);
+			$("#title").val(auth.title);
+			$("#aicon").val(auth.icon);
+			$("#aurl").val(auth.aurl);
+			$("#spid1").val(auth.parentId);
+			layer.open({
+				area: ['500px', '380px'],
+				title: '权限页面编辑',
+				type: 1,
+				content:  $('#dvlay1'), //这里content是一个普通的String
+				btn: ['修改', '取消'],
+				yes: function(index, layero){
+					$.ajax({
+						url: "authorityupdate.do",
+						method:"post",
+						data: $("#fm2").serialize(),
+						success: function (obj) {
+							if (obj.code == 1) {
+								layer.msg("修改权限成功");
+								window.location.herf="resourcelimit.html";
+							} else {
+								layer.msg("修改权限失败");
+							}
+						}
+					})
+					layer.close(index);
+				},cancel: function(){
+				}
+			});
+		}
+
+//	新增权限方法
 	function addAuth() {
         layer.open({
             area: ['500px', '380px'],
@@ -113,9 +145,8 @@
     function changePid(i) {
 		if(i==-1){
             $.get("authorityroot.do",null,function (arr) {
-				alert(arr);
 				for(i=0;i<arr.length;i++){
-                    $("#spid").append("<option value=\""+arr[i].id+"\">"+arr[i].title+"</option>");
+						$("#spid").append("<option value=\""+arr[i].id+"\">"+arr[i].title+"</option>");
 				}
             $("#dvl1").css("display","block");
             form.render();
@@ -126,7 +157,6 @@
 		}
     }
     function setPid(obj) {
-		alert(obj.value());
         $("#pid").val(obj.value());
 
     }
@@ -135,7 +165,7 @@
 <!--新增模态框-->
 <div style="display: none;margin-top: 10px;width: 480px" id="dvlay">
 	<form id="fm1" class="layui-form " >
-		<div class="layui-form-item"  >
+		<div class="layui-form-item" >
 			<label class="layui-form-label">名称：</label>
 			<div class="layui-input-inline">
 				<input name="title" class="layui-input">
@@ -172,4 +202,46 @@
 		</div>
 	</form>
 </div>
+<!--编辑模态框-->
+<div style="display: none;margin-top: 10px;width: 480px" id="dvlay1">
+	<form id="fm2" class="layui-form layui-form-pane" >
+		<input type="hidden" name="id" id="id">
+		<div class="layui-form-item" pane >
+			<label class="layui-form-label">名称：</label>
+			<div class="layui-input-inline">
+				<input name="title" class="layui-input"  id="title">
+			</div>
+		</div>
+		<div class="layui-form-item" pane >
+			<label class="layui-form-label">图标：</label>
+			<div class="layui-input-inline">
+				<input name="icon" class="layui-input" id="aicon">
+			</div>
+		</div>
+		<div class="layui-form-item" pane >
+			<label class="layui-form-label">路径：</label>
+			<div class="layui-input-inline">
+				<input name="aurl" class="layui-input" id="aurl">
+			</div>
+		</div>
+		<div class="layui-form-item"  >
+			<label class="layui-form-label">级别：</label>
+			<div class="layui-input-inline">
+				<input type="radio" name="pid" value="0" lay-filter="level"  title="一级" checked>
+				<input type="radio" name="pid" value="-1" lay-filter="level"   title="二级" >
+			</div>
+		</div>
+		<input type="hidden" id="pid1">
+		<div class="layui-form-item"  id="dvl2" style="display: none" >
+			<label class="layui-form-label">上级路径：</label>
+			<div class="layui-input-inline">
+				<select name="parentId"  onselect="setPid(this)" id="spid1" >
+
+				</select>
+
+			</div>
+		</div>
+	</form>
+</div>
+
 </html>

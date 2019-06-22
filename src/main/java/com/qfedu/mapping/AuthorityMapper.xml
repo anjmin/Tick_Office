@@ -57,4 +57,24 @@
         where a.id = #{id}
     </delete>
 
+    <!--修改权限-->
+    <update id="updateAuth" parameterType="authority">
+        update t_authority
+        <set>
+            <if test="title !=null and title !=''">
+                title = #{title},
+            </if>
+            <if test="icon !=null and icon !=''">
+                aicon = #{icon},
+            </if>
+            <if test="aurl !=null and aurl !=''">
+                aurl = #{aurl},
+            </if>
+            <if test="parentId !=null and parentId !=''">
+                parentId = #{parentId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
 </mapper>
